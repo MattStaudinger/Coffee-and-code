@@ -1,0 +1,21 @@
+<div class="about">
+
+Username: {{ username.username }}<br>
+Email: {{username.email}}<br>
+About: {{user.about}}<br>
+
+<img src="{{username.imgPath}}" alt="Profile picture" height="100">
+
+<button><a href="/auth/profile/edit">Edit profile</a></button>
+</div>
+
+{{!-- <div class="friends">
+  {{#each users}}
+    <div class="onefriend">
+      <img src="{{this.imgPath}}" alt="">
+      <h4><a href="/auth/profile/:id>">{{this.username}}</a></h4>
+    </div>
+  {{else}}
+    <p>No friends yet! :( Use Search to find new friends!</p>
+  {{/each}}
+</div> --}}

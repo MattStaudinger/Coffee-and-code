@@ -13,7 +13,12 @@
     <a href="/">Home</a>
     <a href="/auth/login">Login</a>
     <a href="/auth/signup">Signup</a>
+    <a href="/about">About</a>
+    {{#if isConnected}}
     <a href="/auth/logout">Logout</a>
+    <a href="/auth/profile">Profile</a>
+    <a href="/auth/favorites">Favorites</a>
+    {{/if}}
   </nav>
 
   {{{body}}}

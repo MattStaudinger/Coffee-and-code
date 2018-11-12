@@ -61,7 +61,7 @@ hbs.registerHelper('ifUndefined', (value, options) => {
   
 
 // default value for title local
-app.locals.title = 'Express - Generated with IronGenerator';
+app.locals.title = 'Worst videos on the web';
 
 
 // Enable authentication using session + passport
@@ -73,13 +73,16 @@ app.use(session({
 }))
 app.use(flash());
 require('./passport')(app);
+
+// This middleware gives variables "isConnected" and "isBoss" to the view
+app.use((req,res,next) => {
+  res.locals.isConnected = !!req.user
+  // res.locals.isBoss = req.user && req.user.role === 'Boss'
+  next()
+})
     
+app.use('/', require('./routes/index'));
 
-const index = require('./routes/index');
-app.use('/', index);
-
-const authRoutes = require('./routes/auth');
-app.use('/auth', authRoutes);
+app.use('/auth', require('./routes/auth'));
       
-
 module.exports = app;
