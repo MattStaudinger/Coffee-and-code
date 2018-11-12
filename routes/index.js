@@ -17,17 +17,4 @@ router.post('/send-email', (req, res, next)=> {
   res.render('message', { email, subject, message})
 })
 
-// router.post('edit-profile', uploadCloud.single('photo'), (req, res, next) => {
-//   const imgPath = req.file.url;
-//   const imgName = req.file.originalname;
-//   const newUser = new User({username, descriptaboution, imgPath, imgName})
-//   newMovie.save()
-//   .then(user => {
-//     res.redirect('/');
-//   })
-//   .catch(error => {
-//     console.log(error);
-//   })
-// });
-
 module.exports = router;

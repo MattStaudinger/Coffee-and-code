@@ -137,7 +137,7 @@ router.get('/profile/edit', ensureAuthenticated, (req, res, next) => {
 });
 
 router.post('/profile/edit', ensureAuthenticated, (req, res, next) => { 
-  User.findByIdAndUpdate(req.params.id, {
+  User.findByIdAndUpdate(req.user._id, {
     about: req.body.about,
     imgPath: req.body.description,
   })
