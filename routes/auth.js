@@ -136,13 +136,17 @@ router.get('/profile/edit', ensureAuthenticated, (req, res, next) => {
   res.render('auth/edit-profile');
 });
 
-router.post('/profile/edit', ensureAuthenticated, (req, res, next) => { 
+router.post('/profile/edit', ensureAuthenticated, uploadCloud.single('photo'), (req, res, next) => { 
+  console.log(req.file)
+
   User.findByIdAndUpdate(req.user._id, {
     about: req.body.about,
-    imgPath: req.body.description,
+    imgPath : req.file.url
   })
-    .then(username => {
-      res.render('auth/my-profile', {username});
+    // imgName = req.file.originalname
+    .then(user => {
+
+      res.redirect('/auth/profile');
     });
 })
 
