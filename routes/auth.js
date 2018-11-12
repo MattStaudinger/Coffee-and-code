@@ -5,6 +5,7 @@ const router = express.Router();
 const User = require("../models/User");
 const randomstring = require('randomstring');
 const uploadCloud = require('../config/cloudinary.js');
+const Friend = require("../models/User")
 
 // Bcrypt to encrypt passwords
 const bcrypt = require("bcrypt");
@@ -125,6 +126,13 @@ router.get('/profile', ensureAuthenticated, (req, res) => {
     console.log(username)
     res.render('auth/my-profile', {username});
   })
+  // Friend.find()
+  // .then(friendsFromDb => {
+  //   // booksFromDb is the array of documents representing the books
+  //   res.render("friends", {
+  //     listOfFriends: friendsFromDb
+  //   })
+  // })
   .catch(err => {
     console.log(err)
     res.render('auth/login', { message: "Please log in" });
@@ -142,8 +150,9 @@ router.post('/profile/edit', ensureAuthenticated, uploadCloud.single('photo'), (
   User.findByIdAndUpdate(req.user._id, {
     about: req.body.about,
     imgPath : req.file.url
+
   })
-    // imgName = req.file.originalname
+  
     .then(user => {
 
       res.redirect('/auth/profile');

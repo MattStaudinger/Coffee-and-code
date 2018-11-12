@@ -1,16 +1,34 @@
+<h2>About {{ username.username }}</h2>
+
 <div class="about">
+  <img src="{{username.imgPath}}" alt="Profile picture" height="100" class="profile-picture">
 
-Username: {{ username.username }}<br>
-Email: {{username.email}}<br>
-About: {{username.about}}<br>
-
-<img src="{{username.imgPath}}" alt="Profile picture" height="100">
-
-<button><a href="/auth/profile/edit">Edit profile</a></button>
+  <div class="about-text">
+    <ul>
+      <li><b>Username:</b> {{ username.username }}</li>
+      <li><b>Email:</b> {{username.email}}</li>
+      <li><b>About:</b> {{username.about}}</li>
+    </ul>
+  </div>
 </div>
 
-{{!-- <div class="friends">
-  {{#each users}}
+<br>
+
+<div class="profile-btns">
+<button class="edit-profile-btn"><a href="/auth/profile/edit">Edit profile</a></button>
+
+<button class="add-friends-btn"><a href="/auth/my-profile">Add as friend</a></button>
+</div>
+
+
+<h2>My favorite videos</h2>
+
+Video
+
+<h2>My friends</h2>
+
+<div class="friends">
+  {{#each listOfBooks}}
     <div class="onefriend">
       <img src="{{this.imgPath}}" alt="">
       <h4><a href="/auth/profile/:id>">{{this.username}}</a></h4>
@@ -18,4 +36,4 @@ About: {{username.about}}<br>
   {{else}}
     <p>No friends yet! :( Use Search to find new friends!</p>
   {{/each}}
-</div> --}}
+</div>
