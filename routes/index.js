@@ -41,6 +41,10 @@ router.get('/about', (req, res, next) => {
   res.render('about');
 });
 
+router.get('/video', (req, res, next) => {
+  res.render('video');
+});
+
 router.post('/send-email', (req, res, next)=> {
   let { email, subject, message } = req.body;
   res.render('message', { email, subject, message})

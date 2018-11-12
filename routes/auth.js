@@ -152,11 +152,9 @@ router.post('/profile/edit', ensureAuthenticated, uploadCloud.single('photo'), (
     imgPath : req.file.url
 
   })
-  
-    .then(user => {
-
+  .then(user => {
       res.redirect('/auth/profile');
-    });
+  });
 })
 
 module.exports = router;

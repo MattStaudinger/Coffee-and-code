@@ -10,6 +10,11 @@ button {
   color: #001021;
   border-radius: 25px; }
 
+.profile-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; }
+
 .profile-picture {
   height: 200px;
   width: 200px;
