@@ -1,0 +1,26 @@
+
+<h1>{{cafe.name}}</h1>
+
+<img src="{{cafe.imgPath}}" height="200px">
+<ul>
+  <li>Adress: {{{cafe.address}}}</li>
+  <li>Wifi: {{#if cafe.Wifi}}
+    Yes {{else}} 
+    No 
+    {{/if}}</li>
+    <li>Power Sockets: {{#if cafe.powerSockets}}
+    Yes {{else}} 
+    No 
+    {{/if}}</li>
+  <li>Opening hours: {{{cafe.openingHours}}}</li>
+</ul>
+
+
+<div>----------------------------</div>
+
+<h3>Add comment:</h3>
+
+<form action="/cafe/{{cafe._id}}" method="POST">
+  <textarea name="comment" cols="30" rows="10"></textarea> <br>
+  <button type="submit">Add comment</button>
+</form>

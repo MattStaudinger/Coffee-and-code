@@ -39,4 +39,10 @@ li {
 .mapboxgl-ctrl-geocoder {
   min-width: 100%; }
 
+#marker-list {
+  list-style: none;
+  text-align: left;
+  margin-block-start: 0;
+  padding-inline-start: 0px; }
+
 /*# sourceMappingURL=style.css.map */

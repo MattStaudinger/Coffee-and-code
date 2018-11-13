@@ -20,44 +20,45 @@
   var map = new mapboxgl.Map({
     container: 'map',
     center: [13.1445545, 52.5065133], // starting position [longitude,latitude]
-    zoom: 6, // starting zoom
+    zoom: 9, // starting zoom
     style: 'mapbox://styles/mapbox/streets-v9',
   });
-
-  var popup = new mapboxgl.Popup({ offset: 25 })
-    .setHTML('<ul><li>Name: Cool Cafe</li><li>Adress: Straße des Cafés</li><a href="/login">Show more</a></ul>');
-
-
-
-  map.addControl(new mapboxgl.NavigationControl())
-let marker = []
-let coffeeLocations = [{{{coffeeLocation}}}]
-
-
-
-
-for (let counter = 0; counter < coffeeLocations.length; counter+=2) {
-marker[counter] = new mapboxgl.Marker({
-    color: '#222222' // Black
-  })
-    .setLngLat([coffeeLocations[counter+1],coffeeLocations[counter]])
-    .setPopup(popup)
-    .addTo(map)
-  console.log([coffeeLocations[counter],coffeeLocations[counter+1]])
-
-}
-
-
 
   
 
 
+  map.addControl(new mapboxgl.NavigationControl())
+  let marker = []
+let popup = []
+let coordinateCounter = 0; //the coordinates consist of an array with 2 elements that need to be accessed on one for-Loop
+  let coffeeLocations = [{{{ coffeeLocation }}}]
+  let coffeeNames = "{{coffeeName}}".split(",");
+  let coffeeIds = "{{coffeeId}}".split(",");
+
+
+  console.log(coffeeLocations)
+
+  for (let counter = 0; counter < (coffeeLocations.length/2); counter++) {
+    popup[counter] = new mapboxgl.Popup({ offset: 25 })
+    .setHTML('<ul id="marker-list"><li>Name: ' + coffeeNames[counter] + '</li><a href="/cafe/' + coffeeIds[counter] + '">Show more</a></ul>');
+
+    marker[counter] = new mapboxgl.Marker({
+      color: '#222222' // Black
+    })
+      .setLngLat([coffeeLocations[coordinateCounter + 1], coffeeLocations[coordinateCounter]])
+      .setPopup(popup[counter])
+      .addTo(map)
+        coordinateCounter+=2
+  }
 
 
   var geocoder = new MapboxGeocoder({
     accessToken: mapboxgl.accessToken,
-    placeholder: "Search Café"
+    placeholder: "Search Café",
   });
+
+
+
 
 
 
