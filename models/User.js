@@ -5,12 +5,14 @@ const userSchema = new Schema({
   username: String,
   password: String,
   email: String,
-  about: String,
+  favoriteDrink: String,
   imgName: String,
   imgPath: String,
-  friends: Array,
-  favoriteVideos: Array,
-  videoPageCounter: Number,
+  favoriteCafe: {type: Schema.Types.ObjectId, ref: "Cafe"},
+  role: {type: String,
+         enum : ['Admin', 'Creator', 'User'],
+         default : 'User'
+  },
   status: {
     type: String,
     enum : ['Pending Confirmation', 'Active'],

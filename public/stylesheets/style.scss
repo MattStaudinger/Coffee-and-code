@@ -37,3 +37,10 @@ li {
 .profile-btns{
   display: flex;
 }
+
+
+.geocoder {
+  width:50%;
+
+}
+.mapboxgl-ctrl-geocoder { min-width:100%; }
