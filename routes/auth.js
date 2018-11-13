@@ -79,9 +79,9 @@ router.post("/signup", uploadCloud.single('photo'), (req, res, next) => {
       });  
       
       transporter.sendMail({
-        from: '"Your best worst video" <bestworst@video.com>',
+        from: '"Coffee and Code" <coffeeandcode@gmail.com>',
         to: email, //the email entered in the form
-        subject: 'Please confirm your Email', 
+        subject: 'Please validate your account', 
         html: `Hi ${username}, please validate your account by clicking <a href="http://localhost:3080/auth/confirm/${confirmationCode}">here</a>. 
         If the link doesn't work, please go here: http://localhost:3080/auth/confirm/.`
       })
@@ -126,19 +126,11 @@ router.get('/profile', ensureAuthenticated, (req, res) => {
     console.log(username)
     res.render('auth/my-profile', {username});
   })
-  // Friend.find()
-  // .then(friendsFromDb => {
-  //   // booksFromDb is the array of documents representing the books
-  //   res.render("friends", {
-  //     listOfFriends: friendsFromDb
-  //   })
-  // })
   .catch(err => {
     console.log(err)
     res.render('auth/login', { message: "Please log in" });
   })
 });
-
 
 router.get('/profile/edit', ensureAuthenticated, (req, res, next) => { 
   res.render('auth/edit-profile');
@@ -148,9 +140,8 @@ router.post('/profile/edit', ensureAuthenticated, uploadCloud.single('photo'), (
   console.log(req.file)
 
   User.findByIdAndUpdate(req.user._id, {
-    about: req.body.about,
+    favoriteDrink: req.body.favoriteDrink,
     imgPath : req.file.url
-
   })
   .then(user => {
       res.redirect('/auth/profile');
