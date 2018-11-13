@@ -7,6 +7,7 @@ const cafeSchema = new Schema({
   openingHours: String,
   Wifi: Boolean,
   powerSockets: Boolean,
+  imgPath: String,
   comments: [{
     content: String,
     _creator: {type: Schema.Types.ObjectId, ref: "User"},

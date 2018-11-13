@@ -88,7 +88,7 @@ router.post("/signup", uploadCloud.single('photo'), (req, res, next) => {
       .then(info => console.log(info))
       .catch(error => console.log(error))
 
-      res.redirect("/");
+      res.render("auth/confirm");
     })
   .catch(err => {
     console.log(err)
@@ -137,7 +137,43 @@ router.get('/profile/edit', ensureAuthenticated, (req, res, next) => {
 });
 
 router.post('/profile/edit', ensureAuthenticated, uploadCloud.single('photo'), (req, res, next) => { 
-  console.log(req.file)
+  // console.log(")
+
+
+  // const favoriteDrink = req.user._id.favoriteDrink;
+  // const imgPath = 
+
+  if (req.body.favoriteDrink === "" && req.file === undefined){
+  console.log("Test1")
+      res.redirect('/auth/profile');
+    return
+  } else if (req.body.favoriteDrink === "") {
+  console.log("Test2")
+
+    User.findByIdAndUpdate(req.user._id, {
+      imgPath : req.file.url  
+    })
+    .then(user => {
+      res.redirect('/auth/profile');
+    return
+
+  });
+  } else if (req.file === undefined) {
+  console.log("Test3")
+
+    User.findByIdAndUpdate(req.user._id, {
+      favoriteDrink: req.body.favoriteDrink,
+    })
+    .then(user => {
+      res.redirect('/auth/profile');
+    return
+
+  });
+  }
+  
+  else {
+
+  console.log("Test4  ")
 
   User.findByIdAndUpdate(req.user._id, {
     favoriteDrink: req.body.favoriteDrink,
@@ -146,6 +182,7 @@ router.post('/profile/edit', ensureAuthenticated, uploadCloud.single('photo'), (
   .then(user => {
       res.redirect('/auth/profile');
   });
+  }
 })
 
 router.get('/add-cafe', (req, res, next) => {
@@ -170,7 +207,7 @@ router.post('/add-cafe', ensureAuthenticated, uploadCloud.single('photo'), (req,
     wifi: req.body.description,
     powerSocket: req.body.author,
     location: location,
-    //imgPath : req.file.url,
+    imgPath : req.file.url,
   })
     .then(cafe => {
       res.redirect('/');
