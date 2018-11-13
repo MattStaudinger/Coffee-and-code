@@ -7,13 +7,16 @@ const uploadCloud = require('../config/cloudinary.js');
 
 
 
+router.get('/', (req, res, next) => {
+  res.render('index');
+});
+
+
 router.get('/about', (req, res, next) => {
   res.render('about');
 });
 
-router.get('/video', (req, res, next) => {
-  res.render('video');
-});
+
 
 router.post('/send-email', (req, res, next)=> {
   let { email, subject, message } = req.body;
@@ -29,7 +32,7 @@ router.get('/main', (req, res, next) => {
 router.post('/main', (req, res, next)=> {
   let searchInput = req.body.search;
 
-  
+
 
   res.render('message', {searchInput})
 })
