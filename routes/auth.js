@@ -6,6 +6,7 @@ const User = require("../models/User");
 const Cafe = require("../models/Cafe");
 const randomstring = require('randomstring');
 const uploadCloud = require('../config/cloudinary.js');
+//const MapboxGeocoder = require('@mapbox/mapbox-gl-geocoder');
 
 // Bcrypt to encrypt passwords
 const bcrypt = require("bcrypt");
