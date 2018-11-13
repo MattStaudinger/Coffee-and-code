@@ -9,7 +9,6 @@
 
 <div id='map' style='width: 800px; height: 500px;'></div>
 
-
 <script src='https://api.mapbox.com/mapbox-gl-js/v0.51.0/mapbox-gl.js'></script>
 <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.3.0/mapbox-gl-geocoder.min.js'></script>
 <script src="/javascripts/script.js"></script>
@@ -21,7 +20,7 @@
   var map = new mapboxgl.Map({
     container: 'map',
     center: [13.1445545, 52.5065133], // starting position [longitude,latitude]
-    zoom: 8, // starting zoom
+    zoom: 6, // starting zoom
     style: 'mapbox://styles/mapbox/streets-v9',
   });
 
@@ -31,13 +30,26 @@
 
 
   map.addControl(new mapboxgl.NavigationControl())
+let marker = []
+let coffeeLocations = [{{{coffeeLocation}}}]
 
-  let marker1 = new mapboxgl.Marker({
+
+
+
+for (let counter = 0; counter < coffeeLocations.length; counter+=2) {
+marker[counter] = new mapboxgl.Marker({
     color: '#222222' // Black
   })
-    .setLngLat([13.3711224, 52.5063688])
+    .setLngLat([coffeeLocations[counter+1],coffeeLocations[counter]])
     .setPopup(popup)
     .addTo(map)
+  console.log([coffeeLocations[counter],coffeeLocations[counter+1]])
+
+}
+
+
+
+  
 
 
 

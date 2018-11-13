@@ -2,6 +2,7 @@ const express = require('express');
 const nodemailer = require('nodemailer');
 const router  = express.Router();
 const uploadCloud = require('../config/cloudinary.js');
+const Cafe = require('../models/Cafe');
 
 router.get('/', (req, res, next) => {
         res.render('index');
@@ -18,7 +19,15 @@ router.post('/send-email', (req, res, next)=> {
 
 router.get('/main', (req, res, next) => {
   let mapboxAPIKey = process.env.MAPBOXTOKEN
-  res.render('main', {mapboxAPIKey});
+  Cafe.find()
+  .then (coffee => {
+    let coffeeLocation = coffee.map (coffee => {
+      return coffee.location.coordinates
+    })
+    console.log(coffeeLocation)
+    res.render('main', {mapboxAPIKey, coffeeLocation});
+  })
+  
 });
 
 router.post('/main', (req, res, next)=> {

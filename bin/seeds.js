@@ -19,12 +19,6 @@ mongoose
     console.error('Error connecting to mongo', err)
   });
 
-// let users = [
-//   {
-//     username: "bob",
-//     password: bcrypt.hashSync("bob", bcrypt.genSaltSync(bcryptSalt)),
-//   }
-// ]
 
 let cafes = [
   {
