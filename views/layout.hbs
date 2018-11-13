@@ -15,15 +15,16 @@
 
   <nav>
     <a href="/">Home</a>
+    <a href="/map">Café map</a>
     <a href="/auth/login">Login</a>
     <a href="/auth/signup">Signup</a>
     <a href="/about">About</a>
     <a href="/main">Map</a>
 
     {{#if isConnected}}
+    <a href="/auth/add-cafe">Add café</a>
     <a href="/auth/logout">Logout</a>
     <a href="/auth/profile">Profile</a>
-    <a href="/video">Video</a>
     {{/if}}
   </nav>
 

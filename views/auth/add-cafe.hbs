@@ -1,0 +1,48 @@
+<h2>Add a new café</h2>
+
+{{#if error}}
+<div class="alert-red">
+  {{error}}
+</div>
+{{/if}}
+
+<form action="/auth/add-cafe" method="POST">
+  <label>Name:</label>
+    <input type="text" name="name"> <br>
+  <br><br>
+
+  <label>Wifi:</label>
+    <div>
+      <input type="radio" name="wifi" value="yes"
+         checked>
+      <label for="yes">Yes</label>
+    </div>
+    <div>
+      <input type="radio" name="wifi" value="no">
+      <label for="no">No</label>
+    </div>
+    <br><br>
+
+  <label>Power outlet:</label>
+    <div>
+      <input type="radio" name="powerSocket" value="yes"
+         checked>
+      <label for="yes">Yes</label>
+    </div>
+    <div>
+      <input type="radio" name="powerSocket" value="no">
+      <label for="no">No</label>
+    </div>
+  <br><br>
+
+  <label>Location:</label>
+    <input type="text" name="latitude" placeholder="latitude" >
+    <input type="text" name="longitude" placeholder="longitude">
+  <br><br>
+
+  <label>Upload a picture</label>
+  <input type="file" name="photo">
+  <br><br>
+
+ <button type="submit">Add a new café</button>
+</form>
