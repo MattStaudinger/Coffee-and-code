@@ -6,6 +6,7 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const User = require("../models/User");
+const Cafe = require("../models/Cafe");
 
 const bcryptSalt = 10;
 
@@ -18,24 +19,76 @@ mongoose
     console.error('Error connecting to mongo', err)
   });
 
-let users = [
+// let users = [
+//   {
+//     username: "bob",
+//     password: bcrypt.hashSync("bob", bcrypt.genSaltSync(bcryptSalt)),
+//   }
+// ]
+
+let cafes = [
   {
-    username: "alice",
-    password: bcrypt.hashSync("alice", bcrypt.genSaltSync(bcryptSalt)),
+    name: 'R/D Coffee and Craft Beer',
+    Wifi: true,
+    powerSockets: true,
+    location: {
+      type: 'Point',
+      coordinates: ['52.5292892' , '13.3843579']
+    }
   },
   {
-    username: "bob",
-    password: bcrypt.hashSync("bob", bcrypt.genSaltSync(bcryptSalt)),
+    name: 'Happy Baristas',
+    Wifi: true,
+    powerSockets: false,
+    location: {
+      type: 'Point',
+      coordinates: ['52.505255' , '13.4690561']
+    }
+  },
+  {
+    name: 'Oslo Kaffebar',
+    Wifi: true,
+    powerSockets: true,
+    location: {
+      type: 'Point',
+      coordinates: ['52.5310043' , '13.3867872']
+    }
+  },
+  {
+    name: 'SPONTΛN',
+    Wifi: true,
+    powerSockets: false,
+    location: {
+      type: 'Point',
+      coordinates: ['52.52523' , '13.33032']
+    }
   }
 ]
 
-User.deleteMany()
+// User.deleteMany()
+// .then(() => {
+//   return User.create(users)
+// })
+// .then(usersCreated => {
+//   console.log(`${usersCreated.length} users created with the following id:`);
+//   console.log(usersCreated.map(u => u._id));
+// })
+// .then(() => {
+//   // Close properly the connection to Mongoose
+//   mongoose.disconnect()
+// })
+// .catch(err => {
+//   mongoose.disconnect()
+//   throw err
+// })
+
+Cafe.deleteMany()
 .then(() => {
-  return User.create(users)
+  return Cafe.create(cafes)
 })
-.then(usersCreated => {
-  console.log(`${usersCreated.length} users created with the following id:`);
-  console.log(usersCreated.map(u => u._id));
+.then(cafesCreated => {
+  console.log(`${cafesCreated.length} cafes created with the following id:`);
+  console.log(cafesCreated.map(u => u._id));
 })
 .then(() => {
   // Close properly the connection to Mongoose
