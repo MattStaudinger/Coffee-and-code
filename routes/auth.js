@@ -82,8 +82,8 @@ router.post("/signup", uploadCloud.single('photo'), (req, res, next) => {
         from: '"Coffee and Code" <coffeeandcode@gmail.com>',
         to: email, //the email entered in the form
         subject: 'Please validate your account', 
-        html: `Hi ${username}, please validate your account by clicking <a href="http://localhost:3080/auth/confirm/${confirmationCode}">here</a>. 
-        If the link doesn't work, please go here: http://localhost:3080/auth/confirm/.`
+        html: `Hi ${username}, please validate your account by clicking <a href="http://localhost:3800/auth/confirm/${confirmationCode}">here</a>. 
+        If the link doesn't work, please go here: http://localhost:3890/auth/confirm/.`
       })
       .then(info => console.log(info))
       .catch(error => console.log(error))
@@ -146,6 +146,35 @@ router.post('/profile/edit', ensureAuthenticated, uploadCloud.single('photo'), (
   .then(user => {
       res.redirect('/auth/profile');
   });
+})
+
+router.get('/add-cafe', (req, res, next) => {
+  res.render('auth/add-cafe')
+})
+
+router.post('/add-cafe', ensureAuthenticated, uploadCloud.single('photo'), (req, res, next) => {
+  if (req.body.name === "") {
+    res.render("auth/add-cafe", { 
+      error: "Fill out name" 
+    })
+    return;
+  }
+
+  let location = {
+		type: 'Point',
+		coordinates: [req.body.longitude, req.body.latitude]
+	};
+
+  Cafe.create({
+    name: req.body.name, 
+    wifi: req.body.description,
+    powerSocket: req.body.author,
+    location: location,
+    //imgPath : req.file.url,
+  })
+    .then(cafe => {
+      res.redirect('/');
+    })
 })
 
 module.exports = router;

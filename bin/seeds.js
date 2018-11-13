@@ -62,6 +62,15 @@ let cafes = [
       type: 'Point',
       coordinates: ['52.52523' , '13.33032']
     }
+  },
+  {
+    name: 'THE BARN at Café Kranzler',
+    Wifi: true,
+    powerSockets: false,
+    location: {
+      type: 'Point',
+      coordinates: ['52.5042443' , '13.3309765']
+    }
   }
 ]
 
