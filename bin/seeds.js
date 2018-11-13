@@ -11,7 +11,7 @@ const Cafe = require("../models/Cafe");
 const bcryptSalt = 10;
 
 mongoose
-  .connect('mongodb://localhost/best-worst-video', {useNewUrlParser: true})
+  .connect('mongodb://localhost/coffee-and-code', {useNewUrlParser: true})
   .then(x => {
     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
   })

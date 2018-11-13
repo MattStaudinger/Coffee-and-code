@@ -3,9 +3,9 @@ const passport = require('passport');
 const nodemailer = require('nodemailer');
 const router = express.Router();
 const User = require("../models/User");
+const Cafe = require("../models/Cafe");
 const randomstring = require('randomstring');
 const uploadCloud = require('../config/cloudinary.js');
-const Friend = require("../models/User")
 
 // Bcrypt to encrypt passwords
 const bcrypt = require("bcrypt");
