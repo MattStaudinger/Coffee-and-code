@@ -170,7 +170,7 @@ router.post('/add-cafe', ensureAuthenticated, uploadCloud.single('photo'), (req,
     wifi: req.body.description,
     powerSocket: req.body.author,
     location: location,
-    //imgPath : req.file.url,
+    imgPath : req.file.url,
   })
     .then(cafe => {
       res.redirect('/');

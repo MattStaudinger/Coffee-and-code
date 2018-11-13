@@ -21,12 +21,8 @@ router.get('/main', (req, res, next) => {
   res.render('main', {mapboxAPIKey});
 });
 
-
 router.post('/main', (req, res, next)=> {
   let searchInput = req.body.search;
-
-
-
   res.render('message', {searchInput})
 })
 
