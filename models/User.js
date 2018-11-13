@@ -3,7 +3,24 @@ const Schema   = mongoose.Schema;
 
 const userSchema = new Schema({
   username: String,
-  password: String
+  password: String,
+  email: String,
+  about: String,
+  imgName: String,
+  imgPath: String,
+  friends: Array,
+  favoriteVideos: Array,
+  videoPageCounter: Number,
+  status: {
+    type: String,
+    enum : ['Pending Confirmation', 'Active'],
+    default : 'Pending Confirmation'
+  },
+  confirmationCode: String,
+  email: { type: String, 
+            match: /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i, 
+            unique: true 
+  },
 }, {
   timestamps: {
     createdAt: 'created_at',

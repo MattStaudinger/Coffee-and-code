@@ -1,0 +1,33 @@
+<h3>Coffees</h3>
+
+
+
+
+
+<div id='map' style='width: 800px; height: 500px;'></div>
+
+
+
+<script src='https://api.mapbox.com/mapbox-gl-js/v0.51.0/mapbox-gl.js'></script>
+<script src="/javascripts/script.js"></script>
+
+
+<script>
+
+mapboxgl.accessToken = "{{mapboxAPIKey}}";
+var map = new mapboxgl.Map({
+container: 'map',
+  center: [13.1445545, 52.5065133], // starting position [longitude,latitude]
+    zoom: 8, // starting zoom
+style: 'mapbox://styles/mapbox/streets-v10'
+});
+
+map.addControl(new mapboxgl.NavigationControl())
+
+let marker1 = new mapboxgl.Marker({
+  color: '#222222' // Black
+})
+  .setLngLat([13.3711224, 52.5063688])
+  .addTo(map)
+
+</script>
