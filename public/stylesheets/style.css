@@ -1,14 +1,32 @@
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
 
-a {
-  color: #00B7FF; }
+.landing-page {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-image: url(../images/landingpage-img.jpeg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: #E1DCD9; }
 
-button {
-  background-color: #1481BA;
-  color: #001021;
-  border-radius: 25px; }
+.landing-page a {
+  color: #FFFFFF;
+  text-decoration: none; }
+
+.landing-container {
+  display: flex;
+  align-content: center;
+  justify-content: center; }
+
+.landing-btn {
+  display: flex;
+  width: 40vw;
+  height: 5vh;
+  background-color: #A27E76;
+  color: #E1DCD9;
+  border-radius: 25px;
+  text-decoration: none; }
 
 .profile-container {
   display: flex;
@@ -29,9 +47,6 @@ button {
 
 li {
   list-style-type: none; }
-
-.profile-btns {
-  display: flex; }
 
 .geocoder {
   width: 50%; }
