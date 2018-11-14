@@ -1,0 +1,31 @@
+<h1>{{cafe.name}}</h1>
+
+<img src="{{cafe.imgPath}}" height="200px">
+<ul>
+  <li>Adress: {{{cafe.address}}}</li>
+  <li>Wifi: {{#if cafe.Wifi}}
+    Yes {{else}} 
+    No 
+    {{/if}}</li>
+    <li>Power Sockets: {{#if cafe.powerSockets}}
+    Yes {{else}} 
+    No 
+    {{/if}}</li>
+  <li>Opening hours: {{{cafe.openingHours}}}</li>
+</ul>
+
+
+<div>----------------------------</div>
+
+<h3>Comments:</h3>
+
+<div class="comment-container">
+  {{#each cafe.comments}}
+  <p>{{this.content}}</p>
+  <p>Created by: {{this._creator.name}}</p>
+  <p>Created at: {{this.createdAt}}</p>
+  {{/each}}
+</div>
+
+
+<a href="/auth/cafe/{{cafe._id}}/add-comment">Add comment</a>

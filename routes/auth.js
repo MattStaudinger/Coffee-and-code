@@ -191,28 +191,29 @@ router.get('/add-cafe', (req, res, next) => {
 })
 
 router.post('/add-cafe', ensureAuthenticated, uploadCloud.single('photo'), (req, res, next) => {
-  if (req.body.name === "") {
-    res.render("auth/add-cafe", { 
-      error: "Fill out name" 
-    })
-    return;
-  }
 
   let location = {
 		type: 'Point',
 		coordinates: [req.body.longitude, req.body.latitude]
 	};
 
-  Cafe.create({
-    name: req.body.name, 
-    wifi: req.body.description,
-    powerSocket: req.body.author,
-    location: location,
-    imgPath : req.file.url,
-  })
-    .then(cafe => {
-      res.redirect('/');
+  if ((req.body.name === "")|| (req.body.latitude === "") || (req.body.longitude === "")|| (!req.file))  {
+    res.render("auth/add-cafe", { 
+      error: "Fill out all forms" 
     })
+    return;
+  }
+
+    Cafe.create({
+      name: req.body.name, 
+      wifi: req.body.description,
+      powerSocket: req.body.author,
+      location: location,
+      imgPath : req.file.url,
+    })
+      .then(cafe => {
+        res.redirect('/');
+      })
 })
 
 module.exports = router;

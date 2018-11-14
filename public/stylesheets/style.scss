@@ -80,6 +80,11 @@ li {
 .geocoder {
   width:50%;
 }
-.mapboxgl-ctrl-geocoder { 
-  min-width:100%; 
+.mapboxgl-ctrl-geocoder { min-width:100%; };
+
+#marker-list {
+  list-style: none;
+  text-align: left;
+  margin-block-start: 0;
+  padding-inline-start: 0px;
 }

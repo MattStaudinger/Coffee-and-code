@@ -80,9 +80,9 @@ app.use((req,res,next) => {
   // res.locals.isBoss = req.user && req.user.role === 'Boss'
   next()
 })
+app.use('/auth', require('./routes/auth'));
     
 app.use('/', require('./routes/index'));
 
-app.use('/auth', require('./routes/auth'));
       
 module.exports = app;
