@@ -116,4 +116,7 @@ body {
   margin-block-start: 0;
   padding-inline-start: 0px; }
 
+.hidden {
+  display: none; }
+
 /*# sourceMappingURL=style.css.map */
