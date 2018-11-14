@@ -82,7 +82,7 @@
 
 
 map.on("moveend", ()=> {
-let lat = Number(map.boxZoom._map.transform._center.lat)
+let lat = map.boxZoom._map.transform._center.lat
 let lng = map.boxZoom._map.transform._center.lng
 document.getElementById("lat").value = lat
 document.getElementById("lng").value = lng
