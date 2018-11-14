@@ -50,7 +50,13 @@ body {
   flex-direction: column;
   justify-content: center; }
 
+.profile-container h2 {
+  display: flex;
+  justify-content: center; }
+
 .profile-picture {
+  display: flex;
+  justify-content: center;
   height: 200px;
   width: 200px;
   border-radius: 100px; }
