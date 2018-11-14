@@ -60,29 +60,60 @@ body {
   flex-direction: column;
   justify-content: center;
 }
-
 .profile-container h2{
   display: flex;
   justify-content: center;
 }
-.profile-picture{
+.pic-div {
   display: flex;
   justify-content: center;
+}
+.profile-picture{
   height: 200px;
   width: 200px;
   border-radius: 100px;
+}
+.profile-btns {
+  display: flex;
+  justify-content: center;
+  width: 40vw;
+  height: 5vh;
+  background-color: #A27E76;
+  color: #E1DCD9;
+  border-radius: 25px;
+  text-decoration: none;
+  margin-top: 2vh;
+  margin-bottom: 3vh;
+}
+.profile-btns-a {
+  text-decoration: none;
+  color: inherit;
 }
 .about {
   display: flex;
   flex-direction: column;
 }
 .about-text{
-  margin-left: -30px;
+  margin-top: 2vh;
+  display: flex;
+  flex-direction: column;
 }
-li {
-  list-style-type: none;
+.about-text h5 {
+  display: flex;
+  justify-content: center;
 }
-
+.about-text p {
+  display: flex;
+  justify-content: center;
+}
+#map {
+  width: 90vw;
+}
+.favorite-picture{
+  display: flex;
+  justify-content: center;
+  width: 70vw;
+}
 .geocoder {
   width:50%;
 }

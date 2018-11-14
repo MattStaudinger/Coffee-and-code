@@ -3,8 +3,14 @@ const Schema   = mongoose.Schema;
 
 const cafeSchema = new Schema({
   name: String, 
-  address: String,
-  openingHours: String,
+  address: {
+    type: {type:String},
+    address: String
+  },
+  openingHours: {
+    type: {type:String},
+    hours: String
+  },
   Wifi: Boolean,
   powerSockets: Boolean,
   imgPath: String,

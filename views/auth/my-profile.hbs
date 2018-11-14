@@ -2,27 +2,32 @@
 <h2>About {{ username.username }}</h2>
 
 <div class="about">
-  <img src="{{username.imgPath}}" alt="Profile picture" height="100" class="profile-picture">
+  <div class="pic-div">
+    <img src="{{username.imgPath}}" alt="Profile picture" height="100" class="profile-picture">
+  </div>
 
   <div class="about-text">
-    <ul>
-      <li><b>Username:</b> {{ username.username }}</li>
-      <li><b>Email:</b> {{username.email}}</li>
-      <li><b>My favorite drink:</b> {{username.favoriteDrink}}</li>
-    </ul>
+      <h5><b>Username:</b></h5>
+      <p>{{ username.username }}</p>
+      <h5><b>Email:</b></h5>
+      <p>{{username.email}}</p>
+      <h5><b>My favorite drink:</b></h5>
+      <p>{{username.favoriteDrink}}</p>
   </div>
 </div>
 
-<br>
-
-<div class="profile-btns">
-<button class="edit-profile-btn"><a href="/auth/profile/edit">Edit profile</a></button>
+<div class="btn-div">
+  <button class="profile-btns"><a href="/auth/profile/edit" class="profile-btns-a">Edit profile</a></button>
 </div>
 
 
 <h2>My favorite café</h2>
 
 <div class="favorite-cafe">
-  <img src="{{cafe.id.imgPath}}" alt=""><br>
-  <button class="edit-profile-btn"><a href="/cafe/:id>">{{cafe.id.name}}</a></button>
+  <div class="pic-div">
+    <img src="{{cafe.id.imgPath}}" alt="Picture of favorite café" class="favorite-picture"><br>
+  </div>
+  <div class="btn-div">
+    <button class="profile-btns"><a href="/cafe/:id>" class="profile-btns-a"></a>Show details</button>
+  </div>
 </div>

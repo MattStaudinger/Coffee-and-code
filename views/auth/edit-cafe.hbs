@@ -1,0 +1,46 @@
+<h2>Edit café</h2>
+
+{{#if error}}
+<div class="alert-red">
+  {{error}}
+</div>
+{{/if}}
+
+<form action="/cafe/{{cafe._id}}/edit" method="post" enctype="multipart/form-data">
+
+  <label>Adress:</label>
+  Street: <input id="adress" type="text" name="street"><br>
+  Town: <input id="adress" type="text" name="town"><br>
+
+  <label>Opening hours:</label>
+  <input type="time" name="start" min="0:00" max="24:00" required>
+  until
+  <input type="time" name="end"
+       min="0:00" max="24:00" required>
+  <br><br>
+  <label>Wifi:</label>
+    <div>
+      <input type="radio" name="wifi" value="yes">
+      <label for="yes">Yes</label>
+    </div>
+    <div>
+      <input type="radio" name="wifi" value="no">
+      <label for="no">No</label>
+    </div>
+    <br><br>
+
+  <label>Power outlet:</label>
+    <div>
+      <input type="radio" name="powerSocket" value="yes">
+      <label for="yes">Yes</label>
+    </div>
+    <div>
+      <input type="radio" name="powerSocket" value="no">
+      <label for="no">No</label>
+    </div>
+  <br><br>
+
+  Upload picture: <input type="file" name="photo" value="{{this.picture}}"> <br>
+
+  <button type="submit">Update café</button>
+</form>

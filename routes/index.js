@@ -88,4 +88,56 @@ router.post('/cafe/:id', (req, res, next)=> {
 });
 
 
+router.get('/cafe/:id/edit-cafe', ensureAuthenticated, (req, res, next) => { 
+  
+  let id = req.params.id
+
+  Cafe.findById(id)
+  .then (cafe => {
+    res.render("auth/edit-cafe", {cafe})
+})
+});
+
+router.post('/cafe/:id/edit', ensureAuthenticated, uploadCloud.single('photo'), (req, res, next) => {
+let id = req.params.id;
+
+
+
+let openingHours = {
+	// type: 'Hours',
+	hours: [req.body.start, req.body.end]
+};
+  
+let address = {
+	// type: 'Address',
+  address: [req.body.street, req.body.town]
+};
+
+if (req.body.wifi === 'no'){
+  req.body.wifi = false
+} else {
+  req.body.wifi = true
+}
+if (req.body.powerSocket === 'no'){
+  req.body.powerSocket = false
+} else {
+  req.body.powerSocket = true
+}
+console.log(req.body.powerSocket)
+
+Cafe.findByIdAndUpdate(id, {
+  address: address,
+  openingHours: openingHours,
+  Wifi: req.body.wifi,
+  powerSockets: req.body.powerSocket,
+  //imgPath : req.file.url
+})
+
+
+.then (cafe => {
+    res.redirect('/cafe/'+id)
+  })
+});
+
+
 module.exports = router;

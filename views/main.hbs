@@ -26,8 +26,8 @@
 
   
 
-
   map.addControl(new mapboxgl.NavigationControl())
+
   let marker = []
 let popup = []
 let coordinateCounter = 0; //the coordinates consist of an array with 2 elements that need to be accessed on one for-Loop
@@ -48,7 +48,7 @@ let coordinateCounter = 0; //the coordinates consist of an array with 2 elements
       .setLngLat([coffeeLocations[coordinateCounter + 1], coffeeLocations[coordinateCounter]])
       .setPopup(popup[counter])
       .addTo(map)
-        coordinateCounter+=2
+      coordinateCounter+=2
   }
 
 
@@ -56,10 +56,6 @@ let coordinateCounter = 0; //the coordinates consist of an array with 2 elements
     accessToken: mapboxgl.accessToken,
     placeholder: "Search Café",
   });
-
-
-  
-
 
 
 

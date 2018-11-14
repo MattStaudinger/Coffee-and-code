@@ -191,6 +191,7 @@ router.get('/add-cafe', (req, res, next) => {
 })
 
 router.post('/add-cafe', ensureAuthenticated, uploadCloud.single('photo'), (req, res, next) => {
+  console.log(req.body.longitude)
 
   let location = {
 		type: 'Point',
@@ -206,8 +207,8 @@ router.post('/add-cafe', ensureAuthenticated, uploadCloud.single('photo'), (req,
 
     Cafe.create({
       name: req.body.name, 
-      wifi: req.body.description,
-      powerSocket: req.body.author,
+      wifi: req.body.wifi,
+      powerSocket: req.body.powerSocket,
       location: location,
       imgPath : req.file.url,
     })
