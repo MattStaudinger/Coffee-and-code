@@ -187,22 +187,23 @@ router.post('/profile/edit', ensureAuthenticated, uploadCloud.single('photo'), (
 })
 
 router.get('/add-cafe', (req, res, next) => {
-  res.render('auth/add-cafe')
+  let mapboxAPIKey = process.env.MAPBOXTOKEN
+  res.render('auth/add-cafe', {mapboxAPIKey})
 })
 
 router.post('/add-cafe', ensureAuthenticated, uploadCloud.single('photo'), (req, res, next) => {
-
-  let location = {
-		type: 'Point',
-		coordinates: [req.body.longitude, req.body.latitude]
-	};
 
   if ((req.body.name === "")|| (req.body.latitude === "") || (req.body.longitude === "")|| (!req.file))  {
     res.render("auth/add-cafe", { 
       error: "Fill out all forms" 
     })
     return;
-  }
+  } else {
+
+  let location = {
+		type: 'Point',
+		coordinates: [req.body.latitude, req.body.longitude]
+	};
 
     Cafe.create({
       name: req.body.name, 
@@ -210,10 +211,12 @@ router.post('/add-cafe', ensureAuthenticated, uploadCloud.single('photo'), (req,
       powerSocket: req.body.author,
       location: location,
       imgPath : req.file.url,
+      address : req.body.address
     })
       .then(cafe => {
-        res.redirect('/');
+        res.redirect('/main');
       })
+    }
 })
 
 module.exports = router;

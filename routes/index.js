@@ -52,11 +52,19 @@ router.post('/main', (req, res, next)=> {
 
 router.get('/cafe/:id', (req, res, next) => {
 let id = req.params.id
+let mapboxAPIKey = process.env.MAPBOXTOKEN
+
 
 Cafe.findById(id)
-// .populate("_creator")
+//  .populate({
+//    path: "comments",
+//    populate: {path: "_creator"}
+//  })
+  .populate("comments._creator")
   .then (cafe => {
-    res.render("cafe", {cafe})
+    console.log(cafe.comments)
+    let coffeeLocation = cafe.location.coordinates
+    res.render("cafe", {cafe, mapboxAPIKey, coffeeLocation})
 })
 })
 
@@ -75,11 +83,11 @@ router.post('/cafe/:id', (req, res, next)=> {
   let id = req.params.id;
   console.log("Test", req.body.comment)
   let comment = req.body.comment
-  Cafe.findByIdAndUpdate(id, {comments: {
+  Cafe.findByIdAndUpdate(id, {$push: {comments: {
     content: comment,
     _creator: req.user._id,
     createdAt: Date.now()
-  }
+  }}
 })
 
   .then (cafe => {
