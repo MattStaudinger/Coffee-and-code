@@ -8,7 +8,12 @@
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
-
+.bg-coffee{
+  background-color: #E1DCD9;
+}
+.navbar-coffee{
+  color: white;
+}
 .landing-page {
   display: flex;
   flex-direction: column; 
@@ -18,24 +23,36 @@ body {
   background-size: cover;
   color: #E1DCD9;
 }
-
+.landing-page h1 {
+  display: flex;
+  justify-content: center;
+  margin-top: 30vh;
+}
 .landing-page a {
   color: #FFFFFF;
   text-decoration: none;
 }
-.landing-container {
+.btn-div{
   display: flex;
-  align-content: center;
   justify-content: center;
 }
+
 .landing-btn {
   display: flex;
+  justify-content: center;
   width: 40vw;
   height: 5vh;
   background-color: #A27E76;
   color: #E1DCD9;
   border-radius: 25px;
   text-decoration: none;
+  margin-top: 7vh;
+  margin-bottom: 3vh;
+}
+
+.account-message {
+  display: flex;
+  justify-content: center;
 }
 
 .profile-container {
