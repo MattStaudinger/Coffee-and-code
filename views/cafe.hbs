@@ -10,7 +10,7 @@
 </div>
 
 <ul>
-  <li><span class="bold">Adress:</span> {{{cafe.address}}}</li>
+  <li><span class="bold">Address:</span> {{{cafe.address}}}</li>
   <li><span class="bold">Wifi: </span> {{#if cafe.Wifi}}
     <i class="fas fa-check"></i> 
     {{else}}
@@ -32,7 +32,7 @@
 </div> 
 <div class="comment-container center-2btns mt-4">
 
-  {{#each cafe.comments}}
+  {{#each coffeeComments}}
   <div class="comment">
   <p class="italic date mb-2">Created at: {{this.createdAt}}</p>
   <span class="italic">{{this._creator.username}}: </span>

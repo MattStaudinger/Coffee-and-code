@@ -20,6 +20,16 @@ function ensureAuthenticated(req, res, next) {
   }
 }
 
+// Check if user has active status
+function checkIsActive(req,res,next) {
+  if (req.user.status === 'Active' ) {
+    next()
+  }
+  else {
+    res.render("auth/pleaseconfirm")
+  }
+}
+
 // All the routes
 router.get("/login", (req, res, next) => {
   res.render("auth/login", { message: req.flash("error") });
@@ -86,8 +96,8 @@ router.post("/signup", uploadCloud.single('photo'), (req, res, next) => {
         from: '"Coffee and Code" <coffeeandcode@gmail.com>',
         to: email, //the email entered in the form
         subject: 'Please validate your account', 
-        html: `Hi ${username}, please validate your account by clicking <a href="http://localhost:3800/auth/confirm/${confirmationCode}">here</a>. 
-        If the link doesn't work, please go here: http://localhost:3890/auth/confirm/.`
+        html: `Hi ${username}, please validate your account by clicking <a href="https://coffee-and-code.herokuapp.com/auth/confirm/${confirmationCode}">here</a>. 
+        If the link doesn't work, please go here: https://coffee-and-code.herokuapp.com/auth/confirm/.`
       })
       .then(info => console.log(info))
       .catch(error => console.log(error))
@@ -182,8 +192,9 @@ router.get("/add-cafe", (req, res, next) => {
   res.render("auth/add-cafe", { mapboxAPIKey });
 });
 
-router.post('/add-cafe', ensureAuthenticated, uploadCloud.single('photo'), (req, res, next) => {
+router.post('/add-cafe', ensureAuthenticated, checkIsActive, uploadCloud.single('photo'), (req, res, next) => {
 
+  console.log(req.body.address)
   if ((req.body.name === "")|| (req.body.latitude === "") || (req.body.longitude === ""))  {
     res.render("auth/add-cafe", { 
       error: "Fill out all forms" 
@@ -201,31 +212,31 @@ router.post('/add-cafe', ensureAuthenticated, uploadCloud.single('photo'), (req,
   if (req.body.powerSocket === undefined) req.body.powerSocket = false;
   else req.body.powerSocket = true
   
-  console.log('Eins:' + req.file)
+  console.log('Eins:', req.body.address)
 
   let newCafe = {
     name: req.body.name, 
     Wifi: req.body.wifi,
     powerSocket: req.body.powerSocket,
     location: location,
-    address : req.body.address,
-    //imgPath: req.file.url
+    address: req.body.address,
+    openingHours: [req.body.start, req.body.end],
+    _creator: req.user._id,
   }
 
   if (req.file) {
     newCafe.imgPath = req.file.url
   } 
 
-  console.log('Zwei:' + req.file)
 
     Cafe.create(newCafe)
       .then(cafe => {
         console.log(cafe)
-        res.redirect('/main');
+        res.redirect('/cafe/'+cafe._id);
       })
       .catch(err => {
         console.log(err)
-        res.render('/add-cafe', { message: "Something went wrong" });
+        res.render('/cafe/'+cafe._id, { message: "Something went wrong" });
       })
     }
     

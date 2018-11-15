@@ -82,10 +82,19 @@
     placeholder: "Add address of café",
   });
 
+lat = map.boxZoom._map.transform._center.lat
+lng = map.boxZoom._map.transform._center.lng
+document.getElementById("lat").value = lat
+document.getElementById("lng").value = lng
+console.log(`https://api.mapbox.com/geocoding/v5/mapbox.places/${lng},${lat}.json?access_token=pk.eyJ1IjoibWF0dGhpYXNmcml0eiIsImEiOiJjam9mbGo1OXgwNTh6M2txemw4aWNjMTgwIn0.cgF_suP2Mh9JtoKF20kjyQ`)
+axios.get(`https://api.mapbox.com/geocoding/v5/mapbox.places/${lng},${lat}.json?access_token=pk.eyJ1IjoibWF0dGhpYXNmcml0eiIsImEiOiJjam9mbGo1OXgwNTh6M2txemw4aWNjMTgwIn0.cgF_suP2Mh9JtoKF20kjyQ`)
+.then (res => {
+  document.getElementById("address").value = res.data.features[0].place_name
+})
 
 map.on("moveend", ()=> {
-let lat = map.boxZoom._map.transform._center.lat
-let lng = map.boxZoom._map.transform._center.lng
+lat = map.boxZoom._map.transform._center.lat
+lng = map.boxZoom._map.transform._center.lng
 document.getElementById("lat").value = lat
 document.getElementById("lng").value = lng
 console.log(`https://api.mapbox.com/geocoding/v5/mapbox.places/${lng},${lat}.json?access_token=pk.eyJ1IjoibWF0dGhpYXNmcml0eiIsImEiOiJjam9mbGo1OXgwNTh6M2txemw4aWNjMTgwIn0.cgF_suP2Mh9JtoKF20kjyQ`)

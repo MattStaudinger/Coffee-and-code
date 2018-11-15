@@ -29,14 +29,14 @@
 let popup = []
 let coordinateCounter = 0; //the coordinates consist of an array with 2 elements that need to be accessed on one for-Loop
   let coffeeLocations = [{{{ coffeeLocation }}}]
-  let coffeeNames = "{{coffeeName}}".split(",");
+  let coffeeNames = "{{{coffeeName}}}".split(",");
   let coffeeIds = "{{coffeeId}}".split(",");
+ 
 
-  console.log(coffeeLocations)
 
   for (let counter = 0; counter < (coffeeLocations.length/2); counter++) {
     popup[counter] = new mapboxgl.Popup({ offset: 25 })
-    .setHTML('<ul id="marker-list"><li>' + coffeeNames[counter] + '</li><a href="/cafe/' + coffeeIds[counter] + '">See more</a></ul>');
+    .setHTML('<ul id="marker-list"><li>' + coffeeNames[counter] + '</li></li><a href="/cafe/' + coffeeIds[counter] + '">See more</a></ul>');
 
     marker[counter] = new mapboxgl.Marker({
       color: '#222222' // Black
@@ -44,6 +44,7 @@ let coordinateCounter = 0; //the coordinates consist of an array with 2 elements
       .setLngLat([coffeeLocations[coordinateCounter + 1], coffeeLocations[coordinateCounter]])
       .setPopup(popup[counter])
       .addTo(map)
+
       coordinateCounter+=2
   }
 

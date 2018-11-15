@@ -11,7 +11,7 @@
 </div>
 {{/if}}
 
-<form class="" action="/cafe/{{cafe._id}}/edit" method="POST" enctype="multipart/form-data">
+<form action="/cafe/{{cafe._id}}/edit" method="POST" enctype="multipart/form-data">
   <label class="d-block">Name:</label>
     <input type="text" name="name" value="{{cafe.name}}"> <br>
 
@@ -62,7 +62,7 @@
 <br>
 
 
- <button type="submit" class="profile-btns btn mb-4">Update café</button>
+ <button id="btn-submit" type="submit" class="profile-btns btn mb-4">Update café</button>
 </form>
 </div>
 
@@ -88,36 +88,48 @@
   
   var geocoder = new MapboxGeocoder({
     accessToken: mapboxgl.accessToken,
-    placeholder: {{{cafe.address}}},
+    placeholder: "{{{cafe.address}}}",
   });
 
 
   map.addControl(new mapboxgl.NavigationControl())
-  
-  
-    let marker = new mapboxgl.Marker({
+
+  let latInput = {{{coffeeLocationLat}}}
+  let lngInput = {{{coffeeLocationLng}}}
+
+
+   let marker = new mapboxgl.Marker({
       color: '#222222' // Black
     })
-      .setLngLat([{{cafe.location.coordinates.[1]}}, {{cafe.location.coordinates.[0]}}])
+      .setLngLat([latInput,lngInput])
       .addTo(map)
 
 
 
-map.on("moveend", ()=> {
-let lat = map.boxZoom._map.transform._center.lat
-let lng = map.boxZoom._map.transform._center.lng
+lat = map.boxZoom._map.transform._center.lat
+lng = map.boxZoom._map.transform._center.lng
 document.getElementById("lat").value = lat
 document.getElementById("lng").value = lng
 console.log(`https://api.mapbox.com/geocoding/v5/mapbox.places/${lng},${lat}.json?access_token=pk.eyJ1IjoibWF0dGhpYXNmcml0eiIsImEiOiJjam9mbGo1OXgwNTh6M2txemw4aWNjMTgwIn0.cgF_suP2Mh9JtoKF20kjyQ`)
 axios.get(`https://api.mapbox.com/geocoding/v5/mapbox.places/${lng},${lat}.json?access_token=pk.eyJ1IjoibWF0dGhpYXNmcml0eiIsImEiOiJjam9mbGo1OXgwNTh6M2txemw4aWNjMTgwIn0.cgF_suP2Mh9JtoKF20kjyQ`)
 .then (res => {
   document.getElementById("address").value = res.data.features[0].place_name
-  geocoder.placeholder = res.data.features[0].place_name
+  console.log(document.getElementById("address").value)
 })
 
+map.on("moveend", ()=> {
+lat = map.boxZoom._map.transform._center.lat
+lng = map.boxZoom._map.transform._center.lng
+document.getElementById("lat").value = lat
+document.getElementById("lng").value = lng
+console.log(`https://api.mapbox.com/geocoding/v5/mapbox.places/${lng},${lat}.json?access_token=pk.eyJ1IjoibWF0dGhpYXNmcml0eiIsImEiOiJjam9mbGo1OXgwNTh6M2txemw4aWNjMTgwIn0.cgF_suP2Mh9JtoKF20kjyQ`)
+axios.get(`https://api.mapbox.com/geocoding/v5/mapbox.places/${lng},${lat}.json?access_token=pk.eyJ1IjoibWF0dGhpYXNmcml0eiIsImEiOiJjam9mbGo1OXgwNTh6M2txemw4aWNjMTgwIn0.cgF_suP2Mh9JtoKF20kjyQ`)
+.then (res => {
+  document.getElementById("address").value = res.data.features[0].place_name
+  console.log(document.getElementById("address").value)
+
 })
-
-
+})
 
 
 
