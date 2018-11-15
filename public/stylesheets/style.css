@@ -298,7 +298,6 @@ body {
 
 #marker-list {
   list-style: none;
-  text-align: left;
   margin-block-start: 0;
   padding-inline-start: 0px;
   font-size: 1.2em;
@@ -309,6 +308,11 @@ body {
   text-decoration: none;
   font-weight: 500;
   font-size: 1em;
+  text-align: left; }
+
+.small-marker {
+  font-weight: 500;
+  font-size: 0.8em;
   text-align: left; }
 
 .hidden {

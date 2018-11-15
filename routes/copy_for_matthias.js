@@ -20,16 +20,6 @@ function ensureAuthenticated(req, res, next) {
   }
 }
 
-// Check if user has active status
-function checkIsActive(req,res,next) {
-  if (req.user.status === 'Active' ) {
-    next()
-  }
-  else {
-    res.render("auth/pleaseconfirm")
-  }
-}
-
 // All the routes
 router.get("/login", (req, res, next) => {
   res.render("auth/login", { message: req.flash("error") });
@@ -49,15 +39,19 @@ router.get("/signup", (req, res, next) => {
   res.render("auth/signup");
 });
 
-router.post("/signup", uploadCloud.single('photo'), (req, res, next) => {
+router.post("/signup", uploadCloud.single("photo"), (req, res, next) => {
   const username = req.body.username;
   const password = req.body.password;
   const email = req.body.email;
-  console.log(req.photo)
+  console.log(req.photo);
+  const imgPath = req.file.url;
+  const imgName = req.file.originalname;
   const confirmationCode = randomstring.generate(30);
 
   if (username === "" || password === "" || email === "") {
-    res.render("auth/signup", { message: "Indicate username, email and password" });
+    res.render("auth/signup", {
+      message: "Indicate username, email and password"
+    });
     return;
   }
 
@@ -75,39 +69,38 @@ router.post("/signup", uploadCloud.single('photo'), (req, res, next) => {
       email,
       password: hashPass,
       confirmationCode,
+      imgPath,
+      imgName
     });
 
-    if (req.file) {
-      newUser.imgPath = req.file.url
-    }
+    newUser
+      .save()
+      .then(() => {
+        let transporter = nodemailer.createTransport({
+          service: "Gmail",
+          auth: {
+            user: "charlottetreuse42@gmail.com",
+            pass: "chartreuse"
+          }
+        });
 
-    newUser.save()
-    .then(() => {
+        transporter
+          .sendMail({
+            from: '"Coffee and Code" <coffeeandcode@gmail.com>',
+            to: email, //the email entered in the form
+            subject: "Please validate your account",
+            html: `Hi ${username}, please validate your account by clicking <a href="http://localhost:3800/auth/confirm/${confirmationCode}">here</a>. 
+        If the link doesn't work, please go here: http://localhost:3890/auth/confirm/.`
+          })
+          .then(info => console.log(info))
+          .catch(error => console.log(error));
 
-      let transporter = nodemailer.createTransport({
-        service: 'Gmail',
-        auth: {
-          user: 'charlottetreuse42@gmail.com',
-          pass: 'chartreuse' 
-        }
-      });  
-      
-      transporter.sendMail({
-        from: '"Coffee and Code" <coffeeandcode@gmail.com>',
-        to: email, //the email entered in the form
-        subject: 'Please validate your account', 
-        html: `Hi ${username}, please validate your account by clicking <a href="https://coffee-and-code.herokuapp.com/auth/confirm/${confirmationCode}">here</a>. 
-        If the link doesn't work, please go here: https://coffee-and-code.herokuapp.com/auth/confirm/.`
+        res.render("auth/confirm");
       })
-      .then(info => console.log(info))
-      .catch(error => console.log(error))
-
-      res.render("auth/confirm");
-    })
-  .catch(err => {
-    console.log(err)
-    res.render("auth/signup", { message: "Something went wrong" });
-    })
+      .catch(err => {
+        console.log(err);
+        res.render("auth/signup", { message: "Something went wrong" });
+      });
   });
 });
 
@@ -192,54 +185,50 @@ router.get("/add-cafe", (req, res, next) => {
   res.render("auth/add-cafe", { mapboxAPIKey });
 });
 
-router.post('/add-cafe', ensureAuthenticated, checkIsActive, uploadCloud.single('photo'), (req, res, next) => {
+router.post("/add-cafe", ensureAuthenticated, uploadCloud.single("photo"), (req, res, next) => {
+    let mapboxAPIKey = process.env.MAPBOXTOKEN;
 
-  console.log(req.body.address)
-  if ((req.body.name === "")|| (req.body.latitude === "") || (req.body.longitude === ""))  {
-    res.render("auth/add-cafe", { 
-      error: "Fill out all forms" 
-    })
-    res.redirect("/auth/add-cafe");
-  } else {
+    if (
+      req.body.name === "" ||
+      req.body.latitude === "" ||
+      req.body.longitude === "" ||
+      req.body.start === "" ||
+      req.body.end === ""
+    ) {
+      res.render("auth/add-cafe", {
+        error: "Fill out all forms",
+        mapboxAPIKey
+      });
+      // res.redirect("/auth/add-cafe");
+    } else {
+      console.log("cafe")
 
-  let location = {
-		type: 'Point',
-		coordinates: [req.body.latitude, req.body.longitude]
-  };
-  
-  if (req.body.wifi === undefined) req.body.wifi = false;
-  else req.body.wifi = true
-  if (req.body.powerSocket === undefined) req.body.powerSocket = false;
-  else req.body.powerSocket = true
-  
-  console.log('Eins:', req.body.address)
+      let location = {
+        type: "Point",
+        coordinates: [req.body.latitude, req.body.longitude]
+      };
 
-  let newCafe = {
-    name: req.body.name, 
-    Wifi: req.body.wifi,
-    powerSocket: req.body.powerSocket,
-    location: location,
-    address: req.body.address,
-    openingHours: [req.body.start, req.body.end],
-    _creator: req.user._id,
-  }
+      if (req.body.wifi === undefined) req.body.wifi = false;
+      else req.body.wifi = true;
+      if (req.body.powerSocket === undefined) req.body.powerSocket = false;
+      else req.body.powerSocket = true;
 
-  if (req.file) {
-    newCafe.imgPath = req.file.url
-  } 
-
-
-    Cafe.create(newCafe)
-      .then(cafe => {
+      Cafe.create({
+        name: req.body.name,
+        Wifi: req.body.wifi,
+        powerSockets: req.body.powerSocket,
+        location: location,
+        imgPath: req.file.url,
+        address: req.body.address,
+        openingHours: [req.body.start, req.body.end],
+        _creator: req.user._id,
+        comments: [{}]
+      }).then(cafe => {
         console.log(cafe)
-        res.redirect('/cafe/'+cafe._id);
-      })
-      .catch(err => {
-        console.log(err)
-        res.render('/cafe/'+cafe._id, { message: "Something went wrong" });
-      })
-    }
-    
-})
+        res.redirect("/main");
+      });
+    // }
+  }
+);
 
 module.exports = router;

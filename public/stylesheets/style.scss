@@ -345,7 +345,6 @@ font-weight: 900;
 
 #marker-list {
   list-style: none;
-  text-align: left;
   margin-block-start: 0;
   padding-inline-start: 0px;
   font-size: 1.2em;
@@ -358,9 +357,15 @@ font-weight: 900;
   font-weight: 500;
   font-size: 1em;
   text-align: left;
-
-
 }
+
+
+.small-marker {
+  font-weight: 500;
+  font-size: 0.8em;
+  text-align: left;
+}
+
 
 .hidden {
   display: none;
@@ -401,6 +406,7 @@ display: block;
   width: 80vw;
   border-radius: 20px;
 }
+
 
 
 .switch {
