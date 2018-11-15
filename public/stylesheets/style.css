@@ -124,6 +124,9 @@ body {
   height: 35vh;
   border-radius: 10px; }
 
+#map {
+  width: 90vw; }
+
 .confirm {
   display: flex;
   justify-content: center;
@@ -160,7 +163,7 @@ body {
   justify-content: center;
   width: 70vw; }
 
-#geocoder {
+.geocoder {
   width: 50%; }
 
 #geocoderAddCafe {
