@@ -12,6 +12,16 @@ function ensureAuthenticated(req, res, next) {
   }
 }
 
+// Check roles
+function checkRole(req,res,next) {
+  if (req.user.role === 'Admin' || req.user.role === 'Creator') {
+    next()
+  }
+  else {
+    res.render("auth/notauthorized")
+  }
+}
+
 router.get('/', (req, res, next) => {
         res.render('index');
       });
@@ -97,7 +107,7 @@ router.post('/cafe/:id', (req, res, next)=> {
 });
 
 
-router.get('/cafe/:id/edit-cafe', ensureAuthenticated, (req, res, next) => { 
+router.get('/cafe/:id/edit-cafe', checkRole, ensureAuthenticated, (req, res, next) => { 
   
   let id = req.params.id
 

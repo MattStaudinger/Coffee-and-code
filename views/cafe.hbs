@@ -1,7 +1,7 @@
 <h1>{{cafe.name}}</h1>
 
 <ul>
-  <li>Adress: {{{cafe.address}}}</li>
+  <li>Adress: {{{cafe.address.address}}}</li>
   <li>Wifi: {{#if cafe.Wifi}}
     Yes {{else}}
     No
@@ -10,7 +10,7 @@
     Yes {{else}}
     No
     {{/if}}</li>
-  <li>Opening hours: {{{cafe.openingHours}}}</li>
+  <li>Opening hours: {{{cafe.openingHours.hours}}}</li>
 </ul>
 
 <img src="{{cafe.imgPath}}" height="200px">
