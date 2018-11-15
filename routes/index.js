@@ -78,9 +78,11 @@ router.get(
   "/auth/cafe/:id/add-comment",
   ensureAuthenticated,
   (req, res, next) => {
+  let mapboxAPIKey = process.env.MAPBOXTOKEN;
     let id = req.params.id;
     Cafe.findById(id).then(cafe => {
-      res.render("add-comment", { cafe });
+      let coffeeLocation = cafe.location.coordinates;
+      res.render("add-comment", { cafe, coffeeLocation, mapboxAPIKey });
     });
   }
 );

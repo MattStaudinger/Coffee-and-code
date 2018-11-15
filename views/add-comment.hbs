@@ -1,26 +1,79 @@
 
-<h1>{{cafe.name}}</h1>
 
-<img src="{{cafe.imgPath}}" height="200px">
-<ul>
-  <li>Adress: {{{cafe.address}}}</li>
-  <li>Wifi: {{#if cafe.Wifi}}
-    Yes {{else}} 
-    No 
+
+
+<div class="container cafe-page">
+
+  <div class="center">
+<h2>{{cafe.name}}</h2>
+
+<form class="center" action="/cafe/{{cafe._id}}" method="POST">
+  <textarea placeholder="Add your comment!"name="comment" cols="30" rows="6"></textarea> <br>
+  <button type="submit" class="profile-btns btn">Add comment</button>
+</form>
+</div>
+
+
+
+<ul class="mt-4">
+  <li><span class="bold">Adress:</span> {{{cafe.address}}}</li>
+  <li><span class="bold">Wifi: </span> {{#if cafe.Wifi}}
+    <i class="fas fa-check"></i> 
+    {{else}}
+    <i class="fas fa-times"></i>
     {{/if}}</li>
-    <li>Power Sockets: {{#if cafe.powerSockets}}
-    Yes {{else}} 
-    No 
+  <li><span class="bold">Power Sockets: </span> {{#if cafe.powerSockets}}
+    <i class="fas fa-check"></i>
+   {{else}}
+    <i class="fas fa-times"></i>
     {{/if}}</li>
-  <li>Opening hours: {{{cafe.openingHours}}}</li>
+  <li><span class="bold">Opening hours: </span> {{cafe.openingHours.[0]}} - {{cafe.openingHours.[1]}}</li>
 </ul>
 
+<div class="mt-4" id='mapCafe'></div>
 
-<div>----------------------------</div>
+<div class="row center-2-btns">
+</div> 
+<div class="comment-container center-2btns mt-4">
 
-<h3>Add comment:</h3>
 
-<form action="/cafe/{{cafe._id}}" method="POST">
-  <textarea name="comment" cols="30" rows="10"></textarea> <br>
-  <button type="submit">Add comment</button>
-</form>
+
+</div>
+
+
+</div>
+
+<script src='https://api.mapbox.com/mapbox-gl-js/v0.51.0/mapbox-gl.js'></script>
+<script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.3.0/mapbox-gl-geocoder.min.js'></script>
+<script src="/javascripts/script.js"></script>
+
+
+<script>
+
+let cafeName = "{{{cafe.name}}}"
+let coordinates = [{{{ coffeeLocation }}}]
+  mapboxgl.accessToken = "{{mapboxAPIKey}}";
+  var map = new mapboxgl.Map({
+    container: 'mapCafe',
+    center: [coordinates[1], coordinates[0]],
+    zoom: 15, // starting zoom
+    style: 'mapbox://styles/mapbox/streets-v9',
+  });
+
+
+
+
+  map.addControl(new mapboxgl.NavigationControl())
+  
+  
+    let marker = new mapboxgl.Marker({
+      color: '#222222' // Black
+    })
+      .setLngLat([coordinates[1], coordinates[0]])
+      .addTo(map)
+
+
+
+
+
+</script>
