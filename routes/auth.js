@@ -187,7 +187,6 @@ router.get("/add-cafe", (req, res, next) => {
 
 router.post('/add-cafe', ensureAuthenticated, uploadCloud.single('photo'), (req, res, next) => {
 
-
   if ((req.body.name === "")|| (req.body.latitude === "") || (req.body.longitude === ""))  {
     res.render("auth/add-cafe", { 
       error: "Fill out all forms" 
@@ -224,6 +223,7 @@ router.post('/add-cafe', ensureAuthenticated, uploadCloud.single('photo'), (req,
 
     Cafe.create(newCafe)
       .then(cafe => {
+        console.log(cafe)
         res.redirect('/main');
       })
       .catch(err => {
