@@ -9,50 +9,35 @@
   <link href='https://api.mapbox.com/mapbox-gl-js/v0.51.0/mapbox-gl.css' rel='stylesheet' />
   <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.51.0/mapbox-gl.css' rel='stylesheet' />
   <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.3.0/mapbox-gl-geocoder.css' type='text/css' />
-  <link rel="stylesheet" href="/stylesheets/style.css" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="/stylesheets/style.css" />
 
 </head>
 <body>
 
-  <nav class="navbar navbar-expand-lg navbar-light bg-coffee">
-  <a class="navbar-brand" href="#">Navbar</a>
+  <nav class="navbar fixed-top navbar-expand-md navbar-light bg-coffee">
+  <a class="navbar-brand" href="/main">
+    <img src="https://res.cloudinary.com/dpjdxqrce/image/upload/c_scale,w_119/v1542212594/worst-video-users/coffee-icon.png" width="30" height="30" alt="">
+  </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
-      <a class="nav-item nav-link active" href="/">Home <span class="sr-only">(current)</span></a>
-      <a class="nav-item nav-link" href="/main">Map</a>
-      <a class="nav-item nav-link" href="/about">About</a>
+      <a class="nav-item nav-link active" href="/main">Home <span class="sr-only">(current)</span></a>
       {{#if isConnected}}
       <a class="nav-item nav-link" href="/auth/profile">Profile</a>
       <a class="nav-item nav-link" href="/auth/add-cafe">Add café</a>
       <a class="nav-item nav-link" href="/auth/logout">Logout</a>
-      <a class="nav-item nav-link" href="/auth/profile">Profile</a>
        {{else}}
+      <a class="nav-item nav-link" href="/auth/google">Login google</a>
       <a class="nav-item nav-link" href="/auth/login">Login</a>
       <a class="nav-item nav-link" href="/auth/signup">Signup</a>
       {{/if}}
+      <a  class="nav-item nav-link" href="/about">About</a>
     </div>
   </div>
   </nav> 
-
-  {{!-- <nav>
-    <a href="/">Home</a>
-    <a href="/main">Map</a>
-    <a href="/about">About</a>
-    {{#if isConnected}}
-    <a href="/auth/profile">Profile</a>
-    <a href="/auth/add-cafe">Add café</a>
-    <a href="/auth/logout">Logout</a>
-    <a href="/auth/profile">Profile</a>
-
-    {{else}}
-    <a href="/auth/login">Login</a>
-    <a href="/auth/signup">Signup</a>
-    {{/if}}
-  </nav> --}}
 
   {{{body}}}
 

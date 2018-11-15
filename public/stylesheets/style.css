@@ -19,7 +19,11 @@ body {
 .landing-page h1 {
   display: flex;
   justify-content: center;
-  margin-top: 30vh; }
+  margin-top: 30vh;
+  font-size: 3em;
+  color: white;
+  font-family: helvetica;
+  text-align: center; }
 
 .landing-page a {
   color: #FFFFFF;
@@ -28,6 +32,19 @@ body {
 .btn-div {
   display: flex;
   justify-content: center; }
+
+.btn-primary {
+  background-color: rgba(141, 135, 126, 0.308);
+  border-radius: 40px;
+  border: 0; }
+
+.btn:hover {
+  background-color: #d8a99e;
+  color: #E1DCD9; }
+
+.btn:active {
+  background-color: #ffc5b8;
+  box-shadow: none; }
 
 .landing-btn {
   display: flex;
@@ -45,10 +62,24 @@ body {
   display: flex;
   justify-content: center; }
 
+.add-cafe-container {
+  color: white;
+  max-width: 600px;
+  background-color: #A27E76;
+  padding-top: 10vh;
+  border-radius: 20px;
+  box-sizing: border-box;
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.459); }
+
 .profile-container {
+  color: white;
   display: flex;
   flex-direction: column;
-  justify-content: center; }
+  justify-content: center;
+  max-width: 600px;
+  background-color: #A27E76;
+  padding-top: 10vh;
+  height: 100vh; }
 
 .profile-container h2 {
   display: flex;
@@ -59,25 +90,17 @@ body {
   justify-content: center; }
 
 .profile-picture {
+  object-fit: cover;
   height: 200px;
   width: 200px;
   border-radius: 100px; }
 
 .profile-btns {
-  display: flex;
-  justify-content: center;
-  width: 40vw;
-  height: 5vh;
-  background-color: #A27E76;
-  color: #E1DCD9;
+  width: 200px;
+  background-color: white;
+  color: #A27E76;
   border-radius: 25px;
-  text-decoration: none;
-  margin-top: 2vh;
-  margin-bottom: 3vh; }
-
-.profile-btns-a {
-  text-decoration: none;
-  color: inherit; }
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.459); }
 
 .about {
   display: flex;
@@ -96,8 +119,10 @@ body {
   display: flex;
   justify-content: center; }
 
-#map {
-  width: 90vw; }
+#mapAddCafe {
+  width: 40vw;
+  height: 35vh;
+  border-radius: 10px; }
 
 .confirm {
   display: flex;
@@ -135,8 +160,11 @@ body {
   justify-content: center;
   width: 70vw; }
 
-.geocoder {
+#geocoder {
   width: 50%; }
+
+#geocoderAddCafe {
+  width: 100%; }
 
 .mapboxgl-ctrl-geocoder {
   min-width: 100%; }
@@ -145,9 +173,100 @@ body {
   list-style: none;
   text-align: left;
   margin-block-start: 0;
-  padding-inline-start: 0px; }
+  padding-inline-start: 0px;
+  font-size: 1.2em;
+  font-weight: 900;
+  text-align: center; }
+
+#marker-list a {
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1em; }
 
 .hidden {
   display: none; }
+
+.center {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center; }
+
+.main-page {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  max-width: 400px;
+  padding-top: 10vh;
+  height: 100vh; }
+
+.main-page h3 {
+  text-align: center;
+  display: block; }
+
+.main-page #map {
+  width: 80vw;
+  height: 65vh;
+  border-radius: 10px; }
+
+.main-page #geocoder {
+  width: 80vw;
+  border-radius: 20px; }
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px; }
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0; }
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s; }
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s; }
+
+input:checked + .slider {
+  background-color: #2196F3; }
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3; }
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px); }
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px; }
+
+.slider.round:before {
+  border-radius: 50%; }
 
 /*# sourceMappingURL=style.css.map */

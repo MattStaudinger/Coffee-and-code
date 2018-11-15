@@ -6,7 +6,7 @@ const User = require("../models/User");
 const Cafe = require("../models/Cafe");
 const randomstring = require('randomstring');
 const uploadCloud = require('../config/cloudinary.js');
-//const MapboxGeocoder = require('@mapbox/mapbox-gl-geocoder');
+
 
 // Bcrypt to encrypt passwords
 const bcrypt = require("bcrypt");
@@ -202,23 +202,29 @@ router.get('/add-cafe', (req, res, next) => {
 })
 
 router.post('/add-cafe', ensureAuthenticated, uploadCloud.single('photo'), (req, res, next) => {
-  console.log(req.body.longitude)
+
 
   if ((req.body.name === "")|| (req.body.latitude === "") || (req.body.longitude === "")|| (!req.file))  {
     res.render("auth/add-cafe", { 
       error: "Fill out all forms" 
     })
-    return;
+    res.redirect("/auth/add-cafe");
   } else {
 
   let location = {
 		type: 'Point',
 		coordinates: [req.body.latitude, req.body.longitude]
-	};
+  };
+  
+  if (req.body.wifi === undefined) req.body.wifi = false;
+  else req.body.wifi = true
+  if (req.body.powerSocket === undefined) req.body.powerSocket = false;
+  else req.body.powerSocket = true
+
 
     Cafe.create({
       name: req.body.name, 
-      wifi: req.body.wifi,
+      Wifi: req.body.wifi,
       powerSocket: req.body.powerSocket,
       location: location,
       imgPath : req.file.url,
@@ -229,5 +235,6 @@ router.post('/add-cafe', ensureAuthenticated, uploadCloud.single('photo'), (req,
       })
     }
 })
+
 
 module.exports = router;
