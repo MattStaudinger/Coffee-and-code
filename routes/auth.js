@@ -185,50 +185,53 @@ router.get("/add-cafe", (req, res, next) => {
   res.render("auth/add-cafe", { mapboxAPIKey });
 });
 
-router.post("/add-cafe", ensureAuthenticated, uploadCloud.single("photo"), (req, res, next) => {
-    let mapboxAPIKey = process.env.MAPBOXTOKEN;
+router.post('/add-cafe', ensureAuthenticated, uploadCloud.single('photo'), (req, res, next) => {
 
-    // if (
-    //   req.body.name === "" ||
-    //   req.body.latitude === "" ||
-    //   req.body.longitude === "" ||
-    //   req.body.start === "" ||
-    //   req.body.end === ""
-    // ) {
-    //   res.render("auth/add-cafe", {
-    //     error: "Fill out all forms",
-    //     mapboxAPIKey
-    //   });
-    //   // res.redirect("/auth/add-cafe");
-    // } else {
-    //   console.log("cafe")
 
-      let location = {
-        type: "Point",
-        coordinates: [req.body.latitude, req.body.longitude]
-      };
+  if ((req.body.name === "")|| (req.body.latitude === "") || (req.body.longitude === ""))  {
+    res.render("auth/add-cafe", { 
+      error: "Fill out all forms" 
+    })
+    res.redirect("/auth/add-cafe");
+  } else {
 
-      if (req.body.wifi === undefined) req.body.wifi = false;
-      else req.body.wifi = true;
-      if (req.body.powerSocket === undefined) req.body.powerSocket = false;
-      else req.body.powerSocket = true;
+  let location = {
+		type: 'Point',
+		coordinates: [req.body.latitude, req.body.longitude]
+  };
+  
+  if (req.body.wifi === undefined) req.body.wifi = false;
+  else req.body.wifi = true
+  if (req.body.powerSocket === undefined) req.body.powerSocket = false;
+  else req.body.powerSocket = true
+  
+  console.log('Eins:' + req.file)
 
-      Cafe.create({
-        name: req.body.name,
-        Wifi: req.body.wifi,
-        powerSockets: req.body.powerSocket,
-        location: location,
-        imgPath: req.file.url,
-        address: req.body.address,
-        openingHours: [req.body.start, req.body.end],
-        _creator: req.user._id,
-        comments: [{}]
-      }).then(cafe => {
-        console.log(cafe)
-        res.redirect("/main");
-      });
-    // }
+  let newCafe = {
+    name: req.body.name, 
+    Wifi: req.body.wifi,
+    powerSocket: req.body.powerSocket,
+    location: location,
+    address : req.body.address,
+    //imgPath: req.file.url
   }
-);
+
+  if (req.file) {
+    newCafe.imgPath = req.file.url
+  } 
+
+  console.log('Zwei:' + req.file)
+
+    Cafe.create(newCafe)
+      .then(cafe => {
+        res.redirect('/main');
+      })
+      .catch(err => {
+        console.log(err)
+        res.render('/add-cafe', { message: "Something went wrong" });
+      })
+    }
+    
+})
 
 module.exports = router;
