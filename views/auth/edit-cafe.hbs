@@ -21,12 +21,6 @@
     <input type="text" name="name" value="{{cafe.name}}"> <br>
 
   
-  <label class="d-block">Wifi</label>
-  <label class="switch">
-  <input class="toggle-switch" type="checkbox" name="wifi" value="1" 
-  {{#if cafe.Wifi}}checked="true"{{/if}}>
-  <span class="slider round"></span>
- </label>
 
 <label>Opening hours:</label>
   <input type="time" name="start" min="0:00" max="24:00" value="{{cafe.openingHours.[0]}}" required>
@@ -34,6 +28,14 @@
   <input type="time" name="end"
        min="0:00" max="24:00" value="{{cafe.openingHours.[1]}}" required>
  
+ 
+  <label class="d-block">Wifi</label>
+  <label class="switch">
+  <input class="toggle-switch" type="checkbox" name="wifi" value="1" 
+  {{#if cafe.Wifi}}checked="true"{{/if}}>
+  <span class="slider round"></span>
+ </label>
+
   
 
  <label class="d-block">Power outlet</label>
