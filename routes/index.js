@@ -121,18 +121,31 @@ router.post(
   (req, res, next) => {
     let id = req.params.id;
     let mapboxAPIKey = process.env.MAPBOXTOKEN;
-
     let openingHours = [req.body.start, req.body.end];
-
     let address = req.body.address;
+    let file;
+
+    Cafe.findById(id).then(cafe => {
+      if (!req.file && !cafe.imgPath)
+      console.log("Test 1")
+      res.render("auth/edit-cafe", {
+        error: "Fill out all forms",
+        mapboxAPIKey,
+        cafe
+      });
+    })
+    if (!req.file) {file = req.user.imgPath} else {file = req.file.url}
+    console.log("Test 2")
+
 
     if (
       req.body.name === "" ||
       req.body.latitude === "" ||
-      req.body.longitude === "" ||
-      !req.file
+      req.body.longitude === ""
     ) {
       Cafe.findById(id).then(cafe => {
+      console.log("Test 3")
+
         res.render("auth/edit-cafe", {
           error: "Fill out all forms",
           mapboxAPIKey,
@@ -144,6 +157,7 @@ router.post(
         type: "Point",
         coordinates: [req.body.latitude, req.body.longitude]
       };
+      console.log("Test 4")
 
       if (req.body.wifi === undefined) req.body.wifi = false;
       else req.body.wifi = true;
@@ -156,10 +170,12 @@ router.post(
         openingHours: openingHours,
         Wifi: req.body.wifi,
         powerSockets: req.body.powerSocket,
-        imgPath: req.file.url
+        imgPath: file
       })
       .then(cafe => {
-        res.redirect("/cafe/" + id);
+      console.log("Test 5")
+
+        res.redirect("/cafe" + id);
       });
     }
   }

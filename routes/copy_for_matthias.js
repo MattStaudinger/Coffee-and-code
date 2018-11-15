@@ -188,20 +188,20 @@ router.get("/add-cafe", (req, res, next) => {
 router.post("/add-cafe", ensureAuthenticated, uploadCloud.single("photo"), (req, res, next) => {
     let mapboxAPIKey = process.env.MAPBOXTOKEN;
 
-    // if (
-    //   req.body.name === "" ||
-    //   req.body.latitude === "" ||
-    //   req.body.longitude === "" ||
-    //   req.body.start === "" ||
-    //   req.body.end === ""
-    // ) {
-    //   res.render("auth/add-cafe", {
-    //     error: "Fill out all forms",
-    //     mapboxAPIKey
-    //   });
-    //   // res.redirect("/auth/add-cafe");
-    // } else {
-    //   console.log("cafe")
+    if (
+      req.body.name === "" ||
+      req.body.latitude === "" ||
+      req.body.longitude === "" ||
+      req.body.start === "" ||
+      req.body.end === ""
+    ) {
+      res.render("auth/add-cafe", {
+        error: "Fill out all forms",
+        mapboxAPIKey
+      });
+      // res.redirect("/auth/add-cafe");
+    } else {
+      console.log("cafe")
 
       let location = {
         type: "Point",
