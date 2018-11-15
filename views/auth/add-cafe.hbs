@@ -13,6 +13,14 @@
     <input type="text" name="name"> <br>
   <br><br>
 
+
+<label>Opening hours:</label>
+  <input type="time" name="start" min="0:00" max="24:00" required>
+  until
+  <input type="time" name="end"
+       min="0:00" max="24:00" required>
+ 
+
   <label class="d-block">Wifi</label>
   <label class="switch">
   <input class="toggle-switch" type="checkbox" name="wifi" value="1">
@@ -26,6 +34,7 @@
   <input class="toggle-switch" type="checkbox" name="powerSocket" value="1">
   <span class="slider round"></span>
  </label>
+
 
 
   <label class="d-block">Location:</label>
