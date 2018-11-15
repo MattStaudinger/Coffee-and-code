@@ -24,13 +24,12 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
-      <a class="nav-item nav-link active" href="/main">Home <span class="sr-only">(current)</span></a>
+      <a class="nav-item nav-link" href="/main">Home <span class="sr-only">(current)</span></a>
       {{#if isConnected}}
       <a class="nav-item nav-link" href="/auth/profile">Profile</a>
       <a class="nav-item nav-link" href="/auth/add-cafe">Add café</a>
       <a class="nav-item nav-link" href="/auth/logout">Logout</a>
        {{else}}
-      <a class="nav-item nav-link" href="/auth/google">Login google</a>
       <a class="nav-item nav-link" href="/auth/login">Login</a>
       <a class="nav-item nav-link" href="/auth/signup">Signup</a>
       {{/if}}
