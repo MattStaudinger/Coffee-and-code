@@ -71,8 +71,6 @@ Cafe.findById(id)
 
 router.get('/auth/cafe/:id/add-comment', ensureAuthenticated, (req, res, next) => {
   let id = req.params.id
-
-
 Cafe.findById(id)
   .then (cafe => {
     res.render("add-comment", {cafe})
@@ -98,52 +96,62 @@ router.post('/cafe/:id', (req, res, next)=> {
 
 
 router.get('/cafe/:id/edit-cafe', ensureAuthenticated, (req, res, next) => { 
-  
+let mapboxAPIKey = process.env.MAPBOXTOKEN  
   let id = req.params.id
+
 
   Cafe.findById(id)
   .then (cafe => {
-    res.render("auth/edit-cafe", {cafe})
+    res.render("auth/edit-cafe", {cafe, mapboxAPIKey})
 })
 });
 
 router.post('/cafe/:id/edit', ensureAuthenticated, uploadCloud.single('photo'), (req, res, next) => {
 let id = req.params.id;
+let mapboxAPIKey = process.env.MAPBOXTOKEN  
 
-let openingHours = {
-	// type: 'Hours',
-	hours: [req.body.start, req.body.end]
-};
+let openingHours = [req.body.start, req.body.end];
   
-let address = {
-	// type: 'Address',
-  address: [req.body.street, req.body.town]
+let address = req.body.address;
+
+
+
+if ((req.body.name === "")|| (req.body.latitude === "") || (req.body.longitude === "")|| (!req.file))  {
+  Cafe.findById(id)
+  .then (cafe => {
+    res.render("auth/edit-cafe", { 
+      error: "Fill out all forms" 
+    , mapboxAPIKey, cafe})
+})
+  
+} else {
+
+let location = {
+  type: 'Point',
+  coordinates: [req.body.latitude, req.body.longitude]
 };
 
-if (req.body.wifi === 'no'){
-  req.body.wifi = false
-} else {
-  req.body.wifi = true
-}
-if (req.body.powerSocket === 'no'){
-  req.body.powerSocket = false
-} else {
-  req.body.powerSocket = true
-}
+if (req.body.wifi === undefined) req.body.wifi = false;
+else req.body.wifi = true
+if (req.body.powerSocket === undefined) req.body.powerSocket = false;
+else req.body.powerSocket = true
+
 
 Cafe.findByIdAndUpdate(id, {
   address: address,
+  location: location,
   openingHours: openingHours,
   Wifi: req.body.wifi,
   powerSockets: req.body.powerSocket,
   imgPath : req.file.url
 })
 
-
 .then (cafe => {
     res.redirect('/cafe/'+id)
   })
-});
+
+}
+})
 
 
 module.exports = router;
