@@ -1,3 +1,5 @@
+<div class="profile-container container">
+
 <h2>Edit your profile</h2>
 
 {{#if error}}
@@ -7,7 +9,40 @@
 {{/if}}
 
 <form action="/auth/profile/edit" method="post" enctype="multipart/form-data">
-  My favorite drink: <textarea name="favoriteDrink"  cols="30" rows="10"></textarea> <br>
-  Profile picture: <input type="file" name="photo"> <br>
-  <button type="submit">Update profile</button>
+  <div class="about row justify-content-sm-center align-items-sm-center">
+
+
+  <label class="d-block">Username:</label>
+    <input type="text" name="name" value="{{user.username}}">
+  <label class="d-block">Favorite drink:</label>
+    <input type="text" name="favoriteDrink" value="{{user.favoriteDrink}}"> 
+
+  </div>
+
+<div class="center">
+ {{#if user.imgPath}}
+<div class="favorite-cafe">
+  <div class="pic-div">
+    <img src="{{user.imgPath}}" alt="Picture of user" class="profile-picture"><br>
+  </div>
+  <label>Upload a picture</label>
+  <input type="file" name="photo">
+    {{/if}}
+  </div>
+
+
+  <button class="d-block profile-btns btn mt-4" type="submit">Update profile</button>
+  </div>
+
 </form>
+
+
+
+
+<div class="btn-div mb-2 mt-4">
+  <a href="/auth/profile/"+{{user._id}} class="profile-btns btn">Back<a/>
+</div>
+
+
+
+</div>

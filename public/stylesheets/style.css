@@ -78,12 +78,47 @@ body {
   justify-content: center;
   max-width: 600px;
   background-color: #A27E76;
-  height: 100vh; }
+  padding-top: 10vh; }
+
+.cafe-page ul {
+  width: 84%;
+  margin: 0 8%;
+  list-style: none;
+  text-align: left;
+  margin-block-start: 0;
+  padding-inline-start: 0px; }
+
+.cafe-page li {
+  margin: 5px 0; }
+
+.bold {
+  font-weight: 900; }
+
+.comment {
+  background-color: #d89658;
+  width: 100%;
+  margin: 10px 0;
+  border-radius: 10px;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.459);
+  padding: 8px; }
+
+.italic {
+  font-style: italic; }
+
+.date {
+  font-size: 0.7em; }
+
+.img-cafe {
+  display: block;
+  width: 50%;
+  height: auto; }
 
 #mapCafe {
-  width: 40vw;
-  height: 35vh;
-  border-radius: 10px; }
+  width: 84%;
+  margin: 0 8%;
+  height: 50vh;
+  border-radius: 10px;
+  margin-bottom: 30px; }
 
 .profile-container {
   color: white;
@@ -116,6 +151,13 @@ body {
   border-radius: 25px;
   box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.459); }
 
+.center-2-btns {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  flex-direction: row;
+  align-items: center; }
+
 .about {
   display: flex;
   flex-direction: column; }
@@ -137,6 +179,16 @@ body {
   width: 40vw;
   height: 35vh;
   border-radius: 10px; }
+
+#mapEditCafe {
+  width: 40vw;
+  height: 35vh;
+  border-radius: 10px; }
+
+.img-editCafe {
+  display: block;
+  width: 20%;
+  height: auto; }
 
 #map {
   width: 90vw; }
@@ -182,6 +234,9 @@ body {
   width: 50%; }
 
 #geocoderAddCafe {
+  width: 100%; }
+
+#geocoderEditCafe {
   width: 100%; }
 
 .mapboxgl-ctrl-geocoder {

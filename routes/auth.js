@@ -147,22 +147,15 @@ router.get('/profile', ensureAuthenticated, (req, res) => {
 });
 
 router.get('/profile/edit', ensureAuthenticated, (req, res, next) => { 
-  res.render('auth/edit-profile');
+  res.render('auth/edit-profile', {user:req.user});
 });
 
 router.post('/profile/edit', ensureAuthenticated, uploadCloud.single('photo'), (req, res, next) => { 
-  // console.log(")
-
-
-  // const favoriteDrink = req.user._id.favoriteDrink;
-  // const imgPath = 
-
-  if (req.body.favoriteDrink === "" && req.file === undefined){
-  console.log("Test1")
+  
+  if (req.body.favoriteDrink === "" && !req.file){
       res.redirect('/auth/profile');
     return
   } else if (req.body.favoriteDrink === "") {
-  console.log("Test2")
 
     User.findByIdAndUpdate(req.user._id, {
       imgPath : req.file.url  
@@ -173,7 +166,6 @@ router.post('/profile/edit', ensureAuthenticated, uploadCloud.single('photo'), (
 
   });
   } else if (req.file === undefined) {
-  console.log("Test3")
 
     User.findByIdAndUpdate(req.user._id, {
       favoriteDrink: req.body.favoriteDrink,
@@ -187,7 +179,6 @@ router.post('/profile/edit', ensureAuthenticated, uploadCloud.single('photo'), (
   
   else {
 
-  console.log("Test4  ")
 
   User.findByIdAndUpdate(req.user._id, {
     favoriteDrink: req.body.favoriteDrink,
@@ -205,13 +196,14 @@ router.get('/add-cafe', checkIsActive, (req, res, next) => {
 })
 
 router.post('/add-cafe', ensureAuthenticated, uploadCloud.single('photo'), (req, res, next) => {
+  let mapboxAPIKey = process.env.MAPBOXTOKEN
 
 
   if ((req.body.name === "")|| (req.body.latitude === "") || (req.body.longitude === ""))  {
     res.render("auth/add-cafe", { 
       error: "Fill out all forms" 
-    })
-    res.redirect("/auth/add-cafe");
+    , mapboxAPIKey})
+    // res.redirect("/auth/add-cafe");
   } else {
 
   let location = {

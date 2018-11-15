@@ -1,4 +1,14 @@
-<h2>Edit café</h2>
+
+
+
+
+
+
+
+<div class="container center add-cafe-container">
+
+<h2 class="d-block">Edit café</h2>
+
 
 {{#if error}}
 <div class="alert-red">
@@ -6,41 +16,116 @@
 </div>
 {{/if}}
 
-<form action="/cafe/{{cafe._id}}/edit" method="post" enctype="multipart/form-data">
+<form class="" action="/cafe/{{cafe._id}}/edit" method="POST" enctype="multipart/form-data">
+  <label class="d-block">Name:</label>
+    <input type="text" name="name" value="{{cafe.name}}"> <br>
 
-  <label>Adress:</label>
-  Street: <input id="adress" type="text" name="street"><br>
-  Town: <input id="adress" type="text" name="town"><br>
+  
+  <label class="d-block">Wifi</label>
+  <label class="switch">
+  <input class="toggle-switch" type="checkbox" name="wifi" value="1" 
+  {{#if cafe.Wifi}}checked="true"{{/if}}>
+  <span class="slider round"></span>
+ </label>
 
-  <label>Opening hours:</label>
-  <input type="time" name="start" min="0:00" max="24:00" required>
+<label>Opening hours:</label>
+  <input type="time" name="start" min="0:00" max="24:00" value="{{cafe.openingHours.[0]}}" required>
   until
   <input type="time" name="end"
-       min="0:00" max="24:00" required>
-  <br><br>
-  <label>Wifi:</label>
-    <div>
-      <input type="radio" name="wifi" value="yes">
-      <label for="yes">Yes</label>
-    </div>
-    <div>
-      <input type="radio" name="wifi" value="no">
-      <label for="no">No</label>
-    </div>
-    <br><br>
+       min="0:00" max="24:00" value="{{cafe.openingHours.[1]}}" required>
+ 
+  
 
-  <label>Power outlet:</label>
-    <div>
-      <input type="radio" name="powerSocket" value="yes">
-      <label for="yes">Yes</label>
-    </div>
-    <div>
-      <input type="radio" name="powerSocket" value="no">
-      <label for="no">No</label>
-    </div>
-  <br><br>
+ <label class="d-block">Power outlet</label>
+  <label class="switch">
+  <input class="toggle-switch" type="checkbox" name="powerSocket" value="1" {{#if cafe.powerSockets}}checked="true"{{/if}}>
+  <span class="slider round"></span>
+ </label>
 
-  Upload picture: <input type="file" name="photo" value="{{this.picture}}"> <br>
 
-  <button type="submit">Update café</button>
+  <label class="d-block">Location:</label>
+  <div class="input-group mb-3">
+  <div id='geocoderEditCafe' class='geocoder'>  </div>
+</div>
+
+<div id='mapEditCafe'></div>
+<div class="hidden">
+    <input type="text" name="latitude" id="lat" placeholder="latitude" >
+    <input type="text" name="longitude" id="lng" placeholder="longitude">
+    <input type="text" name="address" id="address" placeholder="address">
+    </div>
+
+
+
+{{#if cafe.imgPath}}
+<img class="img-editCafe mt-2 mb-2" src="{{cafe.imgPath}}">
+{{/if}}
+  <label>Upload a picture</label>
+  <input type="file" name="photo">
+<br>
+
+
+ <button type="submit" class="profile-btns btn mb-4">Update café</button>
 </form>
+</div>
+
+
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src='https://api.mapbox.com/mapbox-gl-js/v0.51.0/mapbox-gl.js'></script>
+<script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.3.0/mapbox-gl-geocoder.min.js'></script>
+<script src="/javascripts/script.js"></script>
+
+
+<script>
+
+  mapboxgl.accessToken = "{{mapboxAPIKey}}";
+  var map = new mapboxgl.Map({
+    container: 'mapEditCafe',
+    center: [{{cafe.location.coordinates.[1]}},{{cafe.location.coordinates.[0]}}], // starting position [longitude,latitude]
+    zoom: 12, // starting zoom
+    style: 'mapbox://styles/mapbox/streets-v9',
+  });
+
+  console.log(address)
+  map.addControl(new mapboxgl.NavigationControl())
+  
+  var geocoder = new MapboxGeocoder({
+    accessToken: mapboxgl.accessToken,
+    placeholder: {{{cafe.address}}},
+  });
+
+
+  map.addControl(new mapboxgl.NavigationControl())
+  
+  
+    let marker = new mapboxgl.Marker({
+      color: '#222222' // Black
+    })
+      .setLngLat([{{cafe.location.coordinates.[1]}}, {{cafe.location.coordinates.[0]}}])
+      .addTo(map)
+
+
+
+map.on("moveend", ()=> {
+let lat = map.boxZoom._map.transform._center.lat
+let lng = map.boxZoom._map.transform._center.lng
+document.getElementById("lat").value = lat
+document.getElementById("lng").value = lng
+console.log(`https://api.mapbox.com/geocoding/v5/mapbox.places/${lng},${lat}.json?access_token=pk.eyJ1IjoibWF0dGhpYXNmcml0eiIsImEiOiJjam9mbGo1OXgwNTh6M2txemw4aWNjMTgwIn0.cgF_suP2Mh9JtoKF20kjyQ`)
+axios.get(`https://api.mapbox.com/geocoding/v5/mapbox.places/${lng},${lat}.json?access_token=pk.eyJ1IjoibWF0dGhpYXNmcml0eiIsImEiOiJjam9mbGo1OXgwNTh6M2txemw4aWNjMTgwIn0.cgF_suP2Mh9JtoKF20kjyQ`)
+.then (res => {
+  document.getElementById("address").value = res.data.features[0].place_name
+  geocoder.placeholder = res.data.features[0].place_name
+})
+
+})
+
+
+
+
+
+
+document.getElementById('geocoderEditCafe').appendChild(geocoder.onAdd(map));
+
+
+</script>

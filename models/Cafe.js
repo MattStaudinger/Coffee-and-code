@@ -7,10 +7,7 @@ const cafeSchema = new Schema({
     type: {type:String},
     address: String
   },
-  openingHours: {
-    type: {type:String},
-    hours: String
-  },
+  openingHours: [String],
   Wifi: Boolean,
   powerSockets: Boolean,
   imgPath: {
