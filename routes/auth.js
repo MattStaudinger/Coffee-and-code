@@ -224,24 +224,33 @@ router.post('/add-cafe', ensureAuthenticated, uploadCloud.single('photo'), (req,
   if (req.body.powerSocket === undefined) req.body.powerSocket = false;
   else req.body.powerSocket = true
   
-  if (req.file) {
-    Cafe.imgPath = req.file.url
+  console.log('Eins:' + req.file)
+
+  let newCafe = {
+    name: req.body.name, 
+    Wifi: req.body.wifi,
+    powerSocket: req.body.powerSocket,
+    location: location,
+    address : req.body.address,
+    //imgPath: req.file.url
   }
 
-    Cafe.create({
-      name: req.body.name, 
-      Wifi: req.body.wifi,
-      powerSocket: req.body.powerSocket,
-      location: location,
-      address : req.body.address
-    })
+  if (req.file) {
+    newCafe.imgPath = req.file.url
+  } 
 
-     
+  console.log('Zwei:' + req.file)
 
+    Cafe.create(newCafe)
       .then(cafe => {
         res.redirect('/main');
       })
+      .catch(err => {
+        console.log(err)
+        res.render('/add-cafe', { message: "Something went wrong" });
+      })
     }
+    
 })
 
 
