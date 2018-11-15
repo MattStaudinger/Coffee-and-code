@@ -1,38 +1,47 @@
 <div class="profile-container container">
+<div class="profile-bg-img">
 
-<h2>Edit your profile</h2>
+<div class="pages-text">
+<h2 >Edit your profile</h2>
+</div>
 
 {{#if error}}
-<div class="alert-red">
+<div class="alert alert-danger">
   {{error}}
 </div>
 {{/if}}
 
+<div class="center">
 <form action="/auth/profile/edit" method="post" enctype="multipart/form-data">
-  <div class="about row justify-content-sm-center align-items-sm-center">
+  <div class="about-forms row justify-content-sm-center align-items-sm-center">
 
-
-  <label class="d-block">Username:</label>
+  <div class="input">
+    <label class="d-block">Username:</label>
     <input type="text" name="name" value="{{user.username}}">
-  <label class="d-block">Favorite drink:</label>
+  </div>
+  <div class="input">
+    <label class="d-block">Favorite drink:</label>
     <input type="text" name="favoriteDrink" value="{{user.favoriteDrink}}"> 
-
+  </div>
   </div>
 
 <div class="center">
  {{#if user.imgPath}}
-<div class="favorite-cafe">
-  <div class="pic-div">
-    <img src="{{user.imgPath}}" alt="Picture of user" class="profile-picture"><br>
+  <div class="favorite-cafe">
+    <div class="pic-div">
+      <img src="{{user.imgPath}}" alt="Picture of user" class="profile-picture"><br>
+    </div>
+    <div class="upload">
+      <label>Upload a picture</label>
+      <input type="file" name="photo" class="profile-btns">
+    </div>  
+      {{/if}}
   </div>
-  <label>Upload a picture</label>
-  <input type="file" name="photo">
-    {{/if}}
-  </div>
+
 
 
   <button class="d-block profile-btns btn mt-4" type="submit">Update profile</button>
-  </div>
+</div>
 
 </form>
 
@@ -43,6 +52,6 @@
   <a href="/auth/profile/"+{{user._id}} class="profile-btns btn">Back<a/>
 </div>
 
-
-
+</div>
+</div>  
 </div>

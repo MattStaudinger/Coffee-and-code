@@ -3,37 +3,41 @@
 
 
 {{#if error}}
-<div class="alert-red">
+<div class="alert alert-danger">
   {{error}}
 </div>
 {{/if}}
 
 <form class="" action="/auth/add-cafe" method="POST" enctype="multipart/form-data">
+
+<div class="input">
   <label class="d-block">Name:</label>
     <input type="text" name="name"> <br>
+</div>
   <br><br>
 
-
+<div class="input">
 <label>Opening hours:</label>
   <input type="time" name="start" min="0:00" max="24:00" required>
   until
-  <input type="time" name="end"
-       min="0:00" max="24:00" required>
+  <input type="time" name="end" min="0:00" max="24:00" required>
+ </div>     
  
-
+ <div class="input">
   <label class="d-block">Wifi</label>
   <label class="switch">
   <input class="toggle-switch" type="checkbox" name="wifi" value="1">
   <span class="slider round"></span>
  </label>
+ </div>
  
-  
-
+<div class="input">
  <label class="d-block">Power outlet</label>
   <label class="switch">
   <input class="toggle-switch" type="checkbox" name="powerSocket" value="1">
   <span class="slider round"></span>
  </label>
+</div>
 
 
 
@@ -50,10 +54,12 @@
     </div>
   <br><br>
 
+<div class="input">
   <label>Upload a picture</label>
-  <input type="file" name="photo">
+  <input type="file" name="photo" class="profile-btns">
   <br><br>
  <button type="submit" class="profile-btns btn mb-4">Add a new café</button>
+ </div>
 </form>
 </div>
 

@@ -1,13 +1,7 @@
 <div class="container cafe-page">
 
   <div class="center">
-<h2>{{cafe.name}}</h2>
-
-{{#if cafe.imgPath}}
-<img class="img-cafe mt-2 mb-2" src="{{cafe.imgPath}}">
-{{/if}}
-
-</div>
+<h2><strong>{{cafe.name}}</strong></h2>
 
 <ul>
   <li><span class="bold">Adress:</span> {{{cafe.address}}}</li>
@@ -23,6 +17,13 @@
     {{/if}}</li>
   <li><span class="bold">Opening hours: </span> {{cafe.openingHours.[0]}} - {{cafe.openingHours.[1]}}</li>
 </ul>
+
+{{#if cafe.imgPath}}
+<img class="img-cafe mt-2 mb-2" src="{{cafe.imgPath}}">
+{{/if}}
+
+</div>
+
 
 <div class="mt-4" id='mapCafe'></div>
 

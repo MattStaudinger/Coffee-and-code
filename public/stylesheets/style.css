@@ -2,7 +2,7 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
 
 .main {
-  margin-top: 8vh; }
+  margin-top: 70px; }
 
 .bg-coffee {
   background-color: #E1DCD9; }
@@ -15,16 +15,16 @@ body {
   flex-direction: column;
   margin-top: -8vh;
   height: 100vh;
-  background-image: url(../images/landingpage-img.jpeg);
-  background-repeat: no-repeat;
+  color: #E1DCD9;
+  background: url(../images/landingpage-img.jpeg) no-repeat center center fixed;
   background-size: cover;
-  color: #E1DCD9; }
+  overflow: hidden; }
 
 .landing-page h1 {
   display: flex;
   justify-content: center;
   margin-top: 30vh;
-  font-size: 3em;
+  font-size: 3.2em;
   color: white;
   font-family: helvetica;
   text-align: center; }
@@ -35,7 +35,8 @@ body {
 
 .btn-div {
   display: flex;
-  justify-content: center; }
+  justify-content: center;
+  margin-bottom: 2vh; }
 
 .btn-primary {
   background-color: rgba(141, 135, 126, 0.308);
@@ -69,11 +70,8 @@ body {
 .add-cafe-container {
   color: white;
   max-width: 600px;
-  background-color: #A27E76;
-  padding-top: 10vh;
-  border-radius: 20px;
-  box-sizing: border-box;
-  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.459); }
+  background-color: rgba(162, 126, 118, 0.5);
+  box-sizing: border-box; }
 
 .cafe-page {
   color: white;
@@ -124,25 +122,44 @@ body {
   border-radius: 10px;
   margin-bottom: 30px; }
 
+.upload {
+  margin-top: 2vh; }
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center; }
+
+.map-container {
+  color: white;
+  background-color: rgba(162, 126, 118, 0.5); }
+
+.about-container {
+  background-color: rgba(162, 126, 118, 0.5); }
+
 .profile-container {
   color: white;
   display: flex;
   flex-direction: column;
   justify-content: center;
   max-width: 600px;
-  background-color: #A27E76;
-  padding-top: 10vh;
-  height: 100vh; }
+  width: 100vw;
+  background-color: rgba(162, 126, 118, 0.5);
+  height: 100vh;
+  background-size: cover; }
 
 .profile-container h2 {
   display: flex;
-  justify-content: center; }
+  justify-content: center;
+  color: white; }
 
 .pic-div {
   display: flex;
   justify-content: center; }
 
 .profile-picture {
+  margin-top: 2vh;
   object-fit: cover;
   height: 200px;
   width: 200px;
@@ -150,10 +167,25 @@ body {
 
 .profile-btns {
   width: 200px;
-  background-color: white;
-  color: #A27E76;
+  background-color: rgba(141, 135, 126, 0.308);
+  color: white;
   border-radius: 25px;
   box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.459); }
+
+.input {
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+
+.input-hours {
+  display: flex;
+  align-items: center;
+  justify-content: center; }
+
+.d-block {
+  margin-top: 2vh;
+  display: flex;
+  justify-content: center; }
 
 .center-2-btns {
   display: flex;
@@ -162,14 +194,20 @@ body {
   flex-direction: row;
   align-items: center; }
 
-.about {
+.about-forms {
   display: flex;
-  flex-direction: column; }
+  flex-direction: column;
+  width: 80vw; }
 
 .about-text {
   margin-top: 2vh;
   display: flex;
   flex-direction: column; }
+
+.h3 {
+  display: flex;
+  justify-content: center;
+  margin-top: 2vh; }
 
 .about-text h5 {
   display: flex;
@@ -177,10 +215,12 @@ body {
 
 .about-text p {
   display: flex;
-  justify-content: center; }
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 80vw; }
 
 #mapAddCafe {
-  width: 40vw;
+  width: 80vw;
   height: 35vh;
   border-radius: 10px; }
 
@@ -220,14 +260,24 @@ body {
   display: flex;
   flex-direction: column; }
 
+.about h3 {
+  margin-top: 3vh; }
+
 .about-text {
   display: flex;
   justify-content: center;
   align-items: center;
   align-content: center; }
 
+.about-ute {
+  font-size: 0.8em;
+  opacity: 0.5;
+  margin-top: 1vh; }
+
 .img-about {
-  width: 40vw; }
+  margin-top: 4vh;
+  width: 60vw;
+  border-radius: 10px; }
 
 .favorite-picture {
   display: flex;
@@ -269,7 +319,8 @@ body {
   flex-wrap: wrap;
   justify-content: center;
   flex-direction: column;
-  align-items: center; }
+  align-items: center;
+  margin-top: 2vh; }
 
 .main-page {
   display: flex;
@@ -278,7 +329,6 @@ body {
   flex-direction: column;
   align-items: center;
   max-width: 400px;
-  padding-top: 10vh;
   height: 100vh; }
 
 .main-page h3 {
