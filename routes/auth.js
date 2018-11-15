@@ -203,7 +203,7 @@ router.post('/add-cafe', ensureAuthenticated, uploadCloud.single('photo'), (req,
     res.render("auth/add-cafe", { 
       error: "Fill out all forms" 
     , mapboxAPIKey})
-    // res.redirect("/auth/add-cafe");
+    res.redirect("/auth/add-cafe");
   } else {
 
   let location = {
@@ -244,6 +244,5 @@ router.post('/add-cafe', ensureAuthenticated, uploadCloud.single('photo'), (req,
     }
     
 })
-
 
 module.exports = router;
