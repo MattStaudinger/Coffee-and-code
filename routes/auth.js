@@ -20,6 +20,16 @@ function ensureAuthenticated(req, res, next) {
   }
 }
 
+// Check if user has active status
+function checkIsActive(req,res,next) {
+  if (req.user.status === 'Active' ) {
+    next()
+  }
+  else {
+    res.render("auth/pleaseconfirm")
+  }
+}
+
 // All the routes
 router.get("/login", (req, res, next) => {
   res.render("auth/login", { message: req.flash("error") });
@@ -86,8 +96,8 @@ router.post("/signup", uploadCloud.single('photo'), (req, res, next) => {
         from: '"Coffee and Code" <coffeeandcode@gmail.com>',
         to: email, //the email entered in the form
         subject: 'Please validate your account', 
-        html: `Hi ${username}, please validate your account by clicking <a href="http://localhost:3800/auth/confirm/${confirmationCode}">here</a>. 
-        If the link doesn't work, please go here: http://localhost:3890/auth/confirm/.`
+        html: `Hi ${username}, please validate your account by clicking <a href="https://coffee-and-code.herokuapp.com/auth/confirm/${confirmationCode}">here</a>. 
+        If the link doesn't work, please go here: https://coffee-and-code.herokuapp.com/auth/confirm/.`
       })
       .then(info => console.log(info))
       .catch(error => console.log(error))
@@ -182,7 +192,7 @@ router.get("/add-cafe", (req, res, next) => {
   res.render("auth/add-cafe", { mapboxAPIKey });
 });
 
-router.post('/add-cafe', ensureAuthenticated, uploadCloud.single('photo'), (req, res, next) => {
+router.post('/add-cafe', ensureAuthenticated, checkIsActive, uploadCloud.single('photo'), (req, res, next) => {
 
 
   if ((req.body.name === "")|| (req.body.latitude === "") || (req.body.longitude === ""))  {
