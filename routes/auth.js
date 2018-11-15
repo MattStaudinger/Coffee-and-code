@@ -39,19 +39,15 @@ router.get("/signup", (req, res, next) => {
   res.render("auth/signup");
 });
 
-router.post("/signup", uploadCloud.single("photo"), (req, res, next) => {
+router.post("/signup", uploadCloud.single('photo'), (req, res, next) => {
   const username = req.body.username;
   const password = req.body.password;
   const email = req.body.email;
-  console.log(req.photo);
-  const imgPath = req.file.url;
-  const imgName = req.file.originalname;
+  console.log(req.photo)
   const confirmationCode = randomstring.generate(30);
 
   if (username === "" || password === "" || email === "") {
-    res.render("auth/signup", {
-      message: "Indicate username, email and password"
-    });
+    res.render("auth/signup", { message: "Indicate username, email and password" });
     return;
   }
 
@@ -69,38 +65,39 @@ router.post("/signup", uploadCloud.single("photo"), (req, res, next) => {
       email,
       password: hashPass,
       confirmationCode,
-      imgPath,
-      imgName
     });
 
-    newUser
-      .save()
-      .then(() => {
-        let transporter = nodemailer.createTransport({
-          service: "Gmail",
-          auth: {
-            user: "charlottetreuse42@gmail.com",
-            pass: "chartreuse"
-          }
-        });
+    if (req.file) {
+      newUser.imgPath = req.file.url
+    }
 
-        transporter
-          .sendMail({
-            from: '"Coffee and Code" <coffeeandcode@gmail.com>',
-            to: email, //the email entered in the form
-            subject: "Please validate your account",
-            html: `Hi ${username}, please validate your account by clicking <a href="http://localhost:3800/auth/confirm/${confirmationCode}">here</a>. 
+    newUser.save()
+    .then(() => {
+
+      let transporter = nodemailer.createTransport({
+        service: 'Gmail',
+        auth: {
+          user: 'charlottetreuse42@gmail.com',
+          pass: 'chartreuse' 
+        }
+      });  
+      
+      transporter.sendMail({
+        from: '"Coffee and Code" <coffeeandcode@gmail.com>',
+        to: email, //the email entered in the form
+        subject: 'Please validate your account', 
+        html: `Hi ${username}, please validate your account by clicking <a href="http://localhost:3800/auth/confirm/${confirmationCode}">here</a>. 
         If the link doesn't work, please go here: http://localhost:3890/auth/confirm/.`
-          })
-          .then(info => console.log(info))
-          .catch(error => console.log(error));
-
-        res.render("auth/confirm");
       })
-      .catch(err => {
-        console.log(err);
-        res.render("auth/signup", { message: "Something went wrong" });
-      });
+      .then(info => console.log(info))
+      .catch(error => console.log(error))
+
+      res.render("auth/confirm");
+    })
+  .catch(err => {
+    console.log(err)
+    res.render("auth/signup", { message: "Something went wrong" });
+    })
   });
 });
 
