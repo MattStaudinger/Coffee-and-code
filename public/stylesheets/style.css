@@ -1,6 +1,9 @@
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
 
+.main {
+  margin-top: 8vh; }
+
 .bg-coffee {
   background-color: #E1DCD9; }
 
@@ -10,6 +13,7 @@ body {
 .landing-page {
   display: flex;
   flex-direction: column;
+  margin-top: -8vh;
   height: 100vh;
   background-image: url(../images/landingpage-img.jpeg);
   background-repeat: no-repeat;
