@@ -12,6 +12,16 @@ function ensureAuthenticated(req, res, next) {
   }
 }
 
+// Check roles
+function checkRole(req,res,next) {
+  if (req.user.role === 'Admin' || req.user.role === 'Creator') {
+    next()
+  }
+  else {
+    res.render("auth/notauthorized")
+  }
+}
+
 router.get('/', (req, res, next) => {
         res.render('index');
       });
@@ -95,8 +105,13 @@ router.post('/cafe/:id', (req, res, next)=> {
 });
 
 
+<<<<<<< HEAD
 router.get('/cafe/:id/edit-cafe', ensureAuthenticated, (req, res, next) => { 
 let mapboxAPIKey = process.env.MAPBOXTOKEN  
+=======
+router.get('/cafe/:id/edit-cafe', checkRole, ensureAuthenticated, (req, res, next) => { 
+  
+>>>>>>> d4d0ebd0ceaefc38b8bbc838fe7fac5a2384f553
   let id = req.params.id
 
 

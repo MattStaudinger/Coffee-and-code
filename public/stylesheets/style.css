@@ -195,6 +195,7 @@ body {
 
 .confirm {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   align-content: center; }
@@ -222,7 +223,7 @@ body {
   align-content: center; }
 
 .img-about {
-  width: 80vw; }
+  width: 40vw; }
 
 .favorite-picture {
   display: flex;

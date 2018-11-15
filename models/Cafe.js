@@ -10,7 +10,10 @@ const cafeSchema = new Schema({
   openingHours: [String],
   Wifi: Boolean,
   powerSockets: Boolean,
-  imgPath: String,
+  imgPath: {
+    type: String,
+    default : 'https://res.cloudinary.com/dpjdxqrce/image/upload/v1542274187/worst-video-users/coffeePlaceholder.png'
+  },
   comments: [{
     content: String,
     _creator: {type: Schema.Types.ObjectId, ref: "User"},

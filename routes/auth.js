@@ -21,6 +21,18 @@ function ensureAuthenticated(req, res, next) {
   }
 }
 
+// Check if user has active status
+function checkIsActive(req,res,next) {
+  if (req.user.status === 'Active' ) {
+    next()
+  }
+  else {
+    res.render("auth/pleaseconfirm")
+  }
+}
+
+
+
 // All the routes
 router.get("/login", (req, res, next) => {
   res.render("auth/login", { "message": req.flash("error") });
@@ -42,23 +54,12 @@ router.post("/signup", uploadCloud.single('photo'), (req, res, next) => {
   const password = req.body.password;
   const email = req.body.email;
   console.log(req.photo)
-  const imgPath = req.file.url;
-  const imgName = req.file.originalname
   const confirmationCode = randomstring.generate(30);
-  
-
-
-
-
 
   if (username === "" || password === "" || email === "") {
     res.render("auth/signup", { message: "Indicate username, email and password" });
     return;
   }
-
- 
-
- 
 
   User.findOne({ username }, "username", (err, user) => {
     if (user !== null) {
@@ -74,9 +75,11 @@ router.post("/signup", uploadCloud.single('photo'), (req, res, next) => {
       email,
       password: hashPass,
       confirmationCode,
-      imgPath,
-      imgName,
     });
+
+    if (req.file) {
+      newUser.imgPath = req.file.url
+    }
 
     newUser.save()
     .then(() => {
@@ -187,7 +190,7 @@ router.post('/profile/edit', ensureAuthenticated, uploadCloud.single('photo'), (
   }
 })
 
-router.get('/add-cafe', (req, res, next) => {
+router.get('/add-cafe', checkIsActive, (req, res, next) => {
   let mapboxAPIKey = process.env.MAPBOXTOKEN
   res.render('auth/add-cafe', {mapboxAPIKey})
 })
@@ -212,20 +215,34 @@ router.post('/add-cafe', ensureAuthenticated, uploadCloud.single('photo'), (req,
   else req.body.wifi = true
   if (req.body.powerSocket === undefined) req.body.powerSocket = false;
   else req.body.powerSocket = true
+  
+  console.log('Eins:' + req.file)
 
+  let newCafe = {
+    name: req.body.name, 
+    Wifi: req.body.wifi,
+    powerSocket: req.body.powerSocket,
+    location: location,
+    address : req.body.address,
+    //imgPath: req.file.url
+  }
 
-    Cafe.create({
-      name: req.body.name, 
-      Wifi: req.body.wifi,
-      powerSocket: req.body.powerSocket,
-      location: location,
-      imgPath : req.file.url,
-      address : req.body.address
-    })
+  if (req.file) {
+    newCafe.imgPath = req.file.url
+  } 
+
+  console.log('Zwei:' + req.file)
+
+    Cafe.create(newCafe)
       .then(cafe => {
         res.redirect('/main');
       })
+      .catch(err => {
+        console.log(err)
+        res.render('/add-cafe', { message: "Something went wrong" });
+      })
     }
+    
 })
 
 

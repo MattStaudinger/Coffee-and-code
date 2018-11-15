@@ -243,6 +243,7 @@ font-weight: 900;
 }
 .confirm {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   align-content: center;
@@ -270,7 +271,7 @@ font-weight: 900;
   align-content: center;
 }
 .img-about {
- width: 80vw;
+ width: 40vw;
 }
 .favorite-picture{
   display: flex;
