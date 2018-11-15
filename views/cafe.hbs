@@ -1,6 +1,5 @@
 <h1>{{cafe.name}}</h1>
 
-<img src="{{cafe.imgPath}}" height="200px">
 <ul>
   <li>Adress: {{{cafe.address}}}</li>
   <li>Wifi: {{#if cafe.Wifi}}
@@ -13,6 +12,8 @@
     {{/if}}</li>
   <li>Opening hours: {{{cafe.openingHours}}}</li>
 </ul>
+
+<img src="{{cafe.imgPath}}" height="200px">
 
 <div class="btn-div">
   <button class="profile-btns"><a href="/cafe/{{cafe._id}}/edit-cafe" class="profile-btns-a">Edit café</a></button>

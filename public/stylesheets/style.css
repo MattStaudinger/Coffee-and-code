@@ -99,6 +99,37 @@ body {
 #map {
   width: 90vw; }
 
+.confirm {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center; }
+
+.confirm h2 {
+  display: flex;
+  justify-content: center; }
+
+.confirm p {
+  display: flex;
+  justify-content: center; }
+
+.confirm img {
+  display: flex;
+  justify-content: center; }
+
+.about {
+  display: flex;
+  flex-direction: column; }
+
+.about-text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center; }
+
+.img-about {
+  width: 80vw; }
+
 .favorite-picture {
   display: flex;
   justify-content: center;

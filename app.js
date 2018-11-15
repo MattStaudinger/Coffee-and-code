@@ -15,7 +15,7 @@ const flash      = require("connect-flash");
     
 
 mongoose
-  .connect('mongodb://localhost/coffee-and-code', {useNewUrlParser: true})
+  .connect(process.env.MONGODB_URI, {useNewUrlParser: true})
   .then(x => {
     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
   })
@@ -73,6 +73,13 @@ app.use(session({
 }))
 app.use(flash());
 require('./passport')(app);
+
+//Middleware execute everytime
+// app.use((req,res,next)=> {
+//   //All my views have a "user" variable
+//   res.local.user = req.user
+//   next()
+// })
 
 // This middleware gives variables "isConnected" and "isBoss" to the view
 app.use((req,res,next) => {
