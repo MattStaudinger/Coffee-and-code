@@ -18,15 +18,12 @@ $darkishGrey: #414143;
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
-
-
 .bg-coffee{
   background-color: #E1DCD9;
 }
 .navbar-coffee{
   color: white;
 }
-
 .landing-page {
   display: flex;
   flex-direction: column; 
@@ -44,7 +41,6 @@ body {
   color: white;
   font-family: helvetica;
   text-align: center;
-
 }
 .landing-page a {
   color: #FFFFFF;
@@ -55,13 +51,11 @@ body {
   justify-content: center;
 }
 
- .btn-primary {
+.btn-primary {
   background-color: $lightBrown;
   border-radius: 40px;
   border: 0;
-
 }
-
 
 .btn:hover {
   background-color: rgb(216, 169, 158);
@@ -71,7 +65,6 @@ body {
   background-color: rgb(255, 197, 184);
   box-shadow: none;
 }
-
 
 .landing-btn {
   display: flex;
@@ -146,13 +139,13 @@ body {
   width: 200px;
   border-radius: 100px;
 }
+
 .profile-btns {
   width: 200px;
   background-color: white;
   color: $burnishedBrown;
   border-radius: 25px;
   box-shadow: 1px 1px 1px  rgba(0, 0, 0, 0.459);
-
 }
 
 .about {
@@ -173,26 +166,59 @@ body {
   justify-content: center;
 }
 
-
 #mapAddCafe {
   width: 40vw;
   height: 35vh;
   border-radius: 10px;
 }
 
+#map {
+  width: 90vw;
+}
+.confirm {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+.confirm h2{
+  display: flex;
+  justify-content: center;
+}
+.confirm p{
+  display: flex;
+  justify-content: center;
+}
+.confirm img{
+  display: flex;
+  justify-content: center;
+}
+.about {
+  display: flex;
+  flex-direction: column;
+}
+.about-text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+.img-about {
+ width: 80vw;
+}
 .favorite-picture{
   display: flex;
   justify-content: center;
   width: 70vw;
 }
-#geocoder {
+.geocoder {
   width:50%;
 }
 
 #geocoderAddCafe {
   width:100%;
-
 }
+
 .mapboxgl-ctrl-geocoder { min-width:100%; };
 
 #marker-list {
@@ -315,5 +341,3 @@ input:checked + .slider:before {
 .slider.round:before {
   border-radius: 50%;
 }
-
-

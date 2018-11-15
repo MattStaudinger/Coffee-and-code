@@ -77,6 +77,13 @@ app.use(session({
 app.use(flash());
 require('./passport')(app);
 
+//Middleware execute everytime
+// app.use((req,res,next)=> {
+//   //All my views have a "user" variable
+//   res.local.user = req.user
+//   next()
+// })
+
 // This middleware gives variables "isConnected" and "isBoss" to the view
 app.use((req,res,next) => {
   res.locals.isConnected = !!req.user

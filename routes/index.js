@@ -110,8 +110,6 @@ router.get('/cafe/:id/edit-cafe', ensureAuthenticated, (req, res, next) => {
 router.post('/cafe/:id/edit', ensureAuthenticated, uploadCloud.single('photo'), (req, res, next) => {
 let id = req.params.id;
 
-
-
 let openingHours = {
 	// type: 'Hours',
 	hours: [req.body.start, req.body.end]
@@ -132,14 +130,13 @@ if (req.body.powerSocket === 'no'){
 } else {
   req.body.powerSocket = true
 }
-console.log(req.body.powerSocket)
 
 Cafe.findByIdAndUpdate(id, {
   address: address,
   openingHours: openingHours,
   Wifi: req.body.wifi,
   powerSockets: req.body.powerSocket,
-  //imgPath : req.file.url
+  imgPath : req.file.url
 })
 
 
