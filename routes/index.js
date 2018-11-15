@@ -26,6 +26,7 @@ router.post('/send-email', (req, res, next)=> {
 })
 
 router.get('/main', (req, res, next) => {
+  console.log(req.user)
   let mapboxAPIKey = process.env.MAPBOXTOKEN
   Cafe.find()
   .then (coffee => {

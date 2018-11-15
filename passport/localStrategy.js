@@ -3,6 +3,7 @@ const LocalStrategy = require('passport-local').Strategy;
 const User          = require('../models/User');
 const bcrypt        = require('bcrypt');
 
+
 passport.use(new LocalStrategy({
     usernameField: 'username',
     passwordField: 'password'
@@ -25,3 +26,4 @@ passport.use(new LocalStrategy({
     .catch(err => done(err));
   }
 ));
+

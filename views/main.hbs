@@ -1,13 +1,10 @@
-<br>
-<h3>Coffee-Places</h3>
+<div class="container main-page">
+<h3 class="mb-2">The best café's to work</h3>
 
+<div id='geocoder' class='geocoder mb-2'></div>
+<div id='map'></div>
 
-
-<div class="input-group mb-3">
-  <div id='geocoder' class='geocoder'></div>
 </div>
-
-<div id='map' style='width: 800px; height: 500px;'></div>
 
 <script src='https://api.mapbox.com/mapbox-gl-js/v0.51.0/mapbox-gl.js'></script>
 <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.3.0/mapbox-gl-geocoder.min.js'></script>
@@ -19,8 +16,8 @@
   mapboxgl.accessToken = "{{mapboxAPIKey}}";
   var map = new mapboxgl.Map({
     container: 'map',
-    center: [13.1445545, 52.5065133], // starting position [longitude,latitude]
-    zoom: 9, // starting zoom
+    center: [13.396498066364188, 52.516746324310933], // starting position [longitude,latitude]
+    zoom: 11, // starting zoom
     style: 'mapbox://styles/mapbox/streets-v9',
   });
 
@@ -40,7 +37,7 @@ let coordinateCounter = 0; //the coordinates consist of an array with 2 elements
 
   for (let counter = 0; counter < (coffeeLocations.length/2); counter++) {
     popup[counter] = new mapboxgl.Popup({ offset: 25 })
-    .setHTML('<ul id="marker-list"><li>Name: ' + coffeeNames[counter] + '</li><a href="/cafe/' + coffeeIds[counter] + '">Show more</a></ul>');
+    .setHTML('<ul id="marker-list"><li>' + coffeeNames[counter] + '</li><a href="/cafe/' + coffeeIds[counter] + '">See more</a></ul>');
 
     marker[counter] = new mapboxgl.Marker({
       color: '#222222' // Black

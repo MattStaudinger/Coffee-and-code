@@ -1,4 +1,6 @@
-<h2>Add a new café</h2>
+<div class="container center add-cafe-container">
+<h2 class="d-block">Add a new café</h2>
+
 
 {{#if error}}
 <div class="alert-red">
@@ -6,40 +8,32 @@
 </div>
 {{/if}}
 
-<form action="/auth/add-cafe" method="POST" enctype="multipart/form-data">
-  <label>Name:</label>
+<form class="" action="/auth/add-cafe" method="POST" enctype="multipart/form-data">
+  <label class="d-block">Name:</label>
     <input type="text" name="name"> <br>
   <br><br>
 
-  <label>Wifi:</label>
-    <div>
-      <input type="radio" name="wifi" value="yes"
-         checked>
-      <label for="yes">Yes</label>
-    </div>
-    <div>
-      <input type="radio" name="wifi" value="no">
-      <label for="no">No</label>
-    </div>
-    <br><br>
+  <label class="d-block">Wifi</label>
+  <label class="switch">
+  <input class="toggle-switch" type="checkbox" name="wifi" value="1">
+  <span class="slider round"></span>
+ </label>
+ 
+  
 
-  <label>Power outlet:</label>
-    <div>
-      <input type="radio" name="powerSocket" value="yes"
-         checked>
-      <label for="yes">Yes</label>
-    </div>
-    <div>
-      <input type="radio" name="powerSocket" value="no">
-      <label for="no">No</label>
-    </div>
-  <br><br>
+ <label class="d-block">Power outlet</label>
+  <label class="switch">
+  <input class="toggle-switch" type="checkbox" name="powerSocket" value="1">
+  <span class="slider round"></span>
+ </label>
 
-  <label>Location:</label>
+
+  <label class="d-block">Location:</label>
   <div class="input-group mb-3">
   <div id='geocoderAddCafe' class='geocoder'>  </div>
 </div>
-<div id='mapAddCafe' style='width: 400px; height: 300px;'></div>
+
+<div id='mapAddCafe'></div>
 <div class="hidden">
     <input type="text" name="latitude" id="lat" placeholder="latitude" >
     <input type="text" name="longitude" id="lng" placeholder="longitude">
@@ -50,10 +44,9 @@
   <label>Upload a picture</label>
   <input type="file" name="photo">
   <br><br>
-
- <button type="submit">Add a new café</button>
+ <button type="submit" class="profile-btns btn mb-4">Add a new café</button>
 </form>
-
+</div>
 
 
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>

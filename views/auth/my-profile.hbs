@@ -1,12 +1,12 @@
-<div class="profile-container">
-<h2>About {{ username.username }}</h2>
+<div class="profile-container container">
+<h2>{{ username.username }}</h2>
 
-<div class="about">
-  <div class="pic-div">
+<div class="about row justify-content-sm-center align-items-sm-center">
+  <div class="pic-div col-lg-4 col-xs-12">
     <img src="{{username.imgPath}}" alt="Profile picture" height="100" class="profile-picture">
   </div>
 
-  <div class="about-text">
+  <div class="about-text col-lg-8">
       <h5><b>Username:</b></h5>
       <p>{{ username.username }}</p>
       <h5><b>Email:</b></h5>
@@ -16,18 +16,21 @@
   </div>
 </div>
 
-<div class="btn-div">
-  <button class="profile-btns"><a href="/auth/profile/edit" class="profile-btns-a">Edit profile</a></button>
+<div class="btn-div mb-2">
+  <a href="/auth/profile/edit" class="profile-btns btn">Edit profile<a/>
 </div>
 
+    {{#if cafe.imgPath}}
 
 <h2>My favorite café</h2>
 
 <div class="favorite-cafe">
   <div class="pic-div">
-    <img src="{{cafe.id.imgPath}}" alt="Picture of favorite café" class="favorite-picture"><br>
+    <img src="{{cafe.imgPath}}" alt="Picture of favorite café" class="favorite-picture"><br>
   </div>
+    {{/if}}
+
   <div class="btn-div">
-    <button class="profile-btns"><a href="/cafe/:id>" class="profile-btns-a"></a>Show details</button>
+  <a href="/cafe/:id>" class="profile-btns btn">Show details<a/>
   </div>
 </div>

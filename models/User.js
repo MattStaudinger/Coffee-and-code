@@ -23,7 +23,9 @@ const userSchema = new Schema({
             match: /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i, 
             unique: true 
   },
-}, {
+  googleId: String,
+}, 
+{
   timestamps: {
     createdAt: 'created_at',
     updatedAt: 'updated_at'
