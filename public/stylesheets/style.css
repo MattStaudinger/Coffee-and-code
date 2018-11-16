@@ -1,3 +1,40 @@
+@media screen and (min-width: 700px) {
+  .profile-btns {
+    text-align: center;
+    width: 20vw;
+    background-color: rgba(141, 135, 126, 0.308);
+    color: white;
+    border-radius: 25px;
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.459);
+    cursor: pointer;
+    /* "hand" cursor */
+    overflow: hidden;
+    text-overflow: ellipsis; } }
+
+@media screen and (min-width: 601px) and (max-width: 699px) {
+  .profile-btns {
+    text-align: center;
+    width: 30vw;
+    background-color: rgba(141, 135, 126, 0.308);
+    color: white;
+    border-radius: 25px;
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.459);
+    cursor: pointer;
+    /* "hand" cursor */
+    overflow: hidden;
+    text-overflow: ellipsis; } }
+
+@media screen and (max-width: 600px) {
+  .profile-btns {
+    text-align: center;
+    width: 40vw;
+    background-color: rgba(141, 135, 126, 0.308);
+    color: white;
+    border-radius: 25px;
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.459);
+    cursor: pointer;
+    /* "hand" cursor */ } }
+
 body {
   font-family: 'Montserrat', sans-serif; }
 
@@ -117,13 +154,14 @@ body {
 
 .img-cafe {
   display: block;
-  width: 60%;
-  height: auto; }
+  width: 60vw;
+  height: auto;
+  border-radius: 15px; }
 
 #mapCafe {
-  width: 80%;
+  width: 80vw;
   margin: 0 8%;
-  height: 50vh;
+  height: 40vh;
   border-radius: 10px;
   margin-bottom: 30px; }
 
@@ -144,6 +182,12 @@ body {
   background-color: rgba(162, 126, 118, 0.5);
   color: white;
   height: 200vh; }
+
+.center-cafe {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center; }
 
 .profile-container {
   color: white;
@@ -171,20 +215,11 @@ body {
   width: 200px;
   border-radius: 100px; }
 
-.profile-btns {
-  text-align: center;
-  width: 200px;
-  background-color: rgba(141, 135, 126, 0.308);
-  color: white;
-  border-radius: 25px;
-  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.459);
-  cursor: pointer;
-  /* "hand" cursor */ }
-
 .input {
   display: flex;
   flex-direction: column;
-  align-items: center; }
+  align-items: center;
+  align-content: center; }
 
 .details-page {
   width: 50vw; }
@@ -255,7 +290,8 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  align-content: center; }
+  align-content: center;
+  margin-top: 70px; }
 
 .confirm h2 {
   display: flex;
