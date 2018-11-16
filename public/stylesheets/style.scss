@@ -527,7 +527,7 @@ input:checked + .slider:before {
   
 }
 
-.profile-question-page input {
+.input-form-drink {
   background: transparent;
 	border: none;
 	border-bottom: 1px dashed #83A4C5;
@@ -542,14 +542,17 @@ input:checked + .slider:before {
   font-size: 2em;
   font-weight: 900;
   text-align: center;
-  
-
-
-  
 }
 
-// .profile-question-page .round {
-//   border-radius: 40px;
-//   background-color: yellow;
-//   padding: 20px;
-// }
+
+.form-control {
+  width: 20%;
+}
+
+.date-control {
+  width: 100px;
+}
+
+
+
+
