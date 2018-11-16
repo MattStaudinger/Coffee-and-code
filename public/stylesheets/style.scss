@@ -261,10 +261,12 @@ font-weight: 900;
   border-radius: 100px;
 }
 
-.input{ 
+.input{
     display: flex;
     flex-direction: column;
+    align-items: center;
     align-content: center;
+    
 }
 .details-page{
   width: 50vw;
@@ -406,7 +408,6 @@ font-weight: 900;
   font-weight: 900;
   text-align: center;
   color:black;
-  padding: 3px 3px 0 3px;
 }
 
 #marker-list a {
@@ -583,21 +584,13 @@ input:checked + .slider:before {
 
 
 .form-control {
-  width: 200px;
-  opacity: 0.9;
+  width: 20%;
 }
 
 .date-control {
   width: 100px;
 }
 
-#email {
-  font-size: 0.7em;
-}
 
-.alert {
-  background-color: $burnishedBrown;
-  width: 100%;
-  color: white;
-}
+
 
