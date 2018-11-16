@@ -125,9 +125,7 @@ router.post(
     let address = req.body.address;
     let file;
 
-    if (!req.file) {file = req.user.imgPath} else {file = req.file.url}
-
-
+  
     if (
       req.body.name === "" ||
       req.body.latitude === "" ||
@@ -152,7 +150,10 @@ router.post(
       if (req.body.powerSocket === undefined) req.body.powerSocket = false;
       else req.body.powerSocket = true;
 
-      Cafe.findByIdAndUpdate(id, {
+      Cafe.findById(id)
+      .then (cafe => {
+         if (!req.file) {file = cafe.imgPath} else {file = req.file.url}
+      Cafe.findByIdAndUpdate(id,{
         address: address,
         location: location,
         openingHours: openingHours,
@@ -162,9 +163,10 @@ router.post(
         name: req.body.name
       })
       .then(cafe => {
-
         res.redirect("/cafe/" + id);
       });
+    })
+      
     }
   }
 );
