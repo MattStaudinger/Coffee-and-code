@@ -14,15 +14,16 @@
 
 <div class="center">
 <form action="/auth/profile/edit" method="post" enctype="multipart/form-data">
+  <div class="form-group">
   <div class="about-forms row justify-content-sm-center align-items-sm-center">
 
   <div class="input">
     <label class="d-block">Username:</label>
-    <input type="text" name="name" value="{{user.username}}">
+    <input class="form-control" type="text" name="name" value="{{user.username}}">
   </div>
   <div class="input">
     <label class="d-block">Favorite drink:</label>
-    <input type="text" name="favoriteDrink" value="{{user.favoriteDrink}}"> 
+    <input class="form-control" type="text" name="favoriteDrink" value="{{user.favoriteDrink}}"> 
   </div>
   </div>
 
@@ -41,7 +42,7 @@
   <button class="d-block profile-btns btn mt-4 mb-2" type="submit">Save</button>
    <a href="/auth/profile/"+{{user._id}} class="profile-btns btn">Cancel<a/>
 </div>
-
+</div>
 </form>
 
 

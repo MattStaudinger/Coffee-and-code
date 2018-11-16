@@ -137,6 +137,12 @@ res.render("profile-question")
 })
 
 router.post("/profile-question", ensureAuthenticated, (req, res) => {
+
+  if (req.body.drink === "") {
+    res.render("profile-question", { 
+      error: "Fill out all forms"})
+    return;
+  }
   User.findByIdAndUpdate(req.user._id, {
     favoriteDrink: req.body.drink
   })
@@ -166,23 +172,17 @@ router.get("/profile/edit", ensureAuthenticated, (req, res, next) => {
 
 router.post("/profile/edit", ensureAuthenticated, uploadCloud.single("photo"),
   (req, res, next) => {
-    let name;
+    let name = req.body.name;
     let file;
-    if (req.body.name === "") {name = req.user.username} else {name = req.body.name}
-    if (!req.file) {file = req.user.imgPath} else {file = req.file.url}
-    if (
-      req.body.favoriteDrink === "") {
-      res.redirect("/auth/profile");
+
+    if ((req.body.name === "")|| (req.body.favoriteDrink === "")) {
+      res.render("auth/edit-profile", { 
+        error: "Fill out all forms", user: req.user
+      })
       return;
-    } else if (req.body.favoriteDrink === "") {
-      User.findByIdAndUpdate(req.user._id, {
-        imgPath: file,
-        username: name
-      }).then(user => {
-        res.redirect("/auth/profile");
-        return;
-      });
-    } else if (!req.file) {
+    }
+
+  if (!req.file) {
       User.findByIdAndUpdate(req.user._id, {
         favoriteDrink: req.body.favoriteDrink,
         username: name
@@ -193,14 +193,13 @@ router.post("/profile/edit", ensureAuthenticated, uploadCloud.single("photo"),
     } else {
       User.findByIdAndUpdate(req.user._id, {
         favoriteDrink: req.body.favoriteDrink,
-        imgPath: file,
+        imgPath: req.file.url,
         username: name
       }).then(user => {
         res.redirect("/auth/profile");
       });
     }
-  }
-);
+  })
 
 router.get("/add-cafe", (req, res, next) => {
   let mapboxAPIKey = process.env.MAPBOXTOKEN;
@@ -208,12 +207,12 @@ router.get("/add-cafe", (req, res, next) => {
 });
 
 router.post('/add-cafe', ensureAuthenticated, checkIsActive, uploadCloud.single('photo'), (req, res, next) => {
+  let mapboxAPIKey = process.env.MAPBOXTOKEN;
 
   if ((req.body.name === "")|| (req.body.latitude === "") || (req.body.longitude === ""))  {
     res.render("auth/add-cafe", { 
-      error: "Fill out all forms" 
+      error: "Fill out all forms" , mapboxAPIKey
     })
-    res.redirect("/auth/add-cafe");
   } else {
 
   let location = {

@@ -1,6 +1,15 @@
 
+
+
+
 <form action="/auth/profile-question" method="POST" id="form-container">
+
 <div class="profile-question-page">
+  {{#if error}}
+<div class="alert alert-danger">
+  {{error}}
+</div>
+{{/if}}
   <div class="round">
 <h1>Your favorite drink?</h1>
 <input class="input-form-drink"  type="text" name="drink" autofocus>

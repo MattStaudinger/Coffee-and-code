@@ -19,7 +19,7 @@
     container: 'map',
     center: [13.396498066364188, 52.516746324310933], // starting position [longitude,latitude]
     zoom: 11, // starting zoom
-    style: 'mapbox://styles/mapbox/streets-v9',
+    style: 'mapbox://styles/mapbox/streets-v10',
   });
 
   
@@ -40,8 +40,8 @@ let coordinateCounter = 0; //the coordinates consist of an array with 2 elements
     .setHTML('<ul id="marker-list"><li>' + coffeeNames[counter] + '</li></li><a href="/cafe/' + coffeeIds[counter] + '">See more</a></ul>');
 
     marker[counter] = new mapboxgl.Marker({
-      color: '#222222' // Black
-    })
+      color: '#66290b'
+          })
       .setLngLat([coffeeLocations[coordinateCounter + 1], coffeeLocations[coordinateCounter]])
       .setPopup(popup[counter])
       .addTo(map)
