@@ -66,13 +66,14 @@
 </div>
 
 <div class="input"> 
-   <input type="file" name="photo" id="photo_upload" class="inputfile">
-  <label for="photo_upload">Upload a picture</label>
+    <input type="file" name="photo" id="photo_upload" class="inputfile">
+  <label class="profile-btns p-2 btn" for="photo_upload">Upload a picture</label>
 <br>
 </div>
 
-<div class="input"> 
-  <button id="btn-submit" type="submit" class="profile-btns btn mb-4">Update café</button>
+<div class="input mb-4"> 
+  <button id="btn-submit" type="submit" class="profile-btns btn mb-2">Save</button>
+  <a href="/auth/profile/"+{{user._id}} class="profile-btns btn">Cancel<a/>
 </div>
 
 </form>
