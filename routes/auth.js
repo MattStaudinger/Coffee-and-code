@@ -53,7 +53,6 @@ router.post("/signup", uploadCloud.single('photo'), (req, res, next) => {
   const username = req.body.username;
   const password = req.body.password;
   const email = req.body.email;
-  console.log(req.photo)
   const confirmationCode = randomstring.generate(30);
 
   if (username === "" || password === "" || email === "") {
@@ -136,7 +135,6 @@ router.get("/confirm/:confirmCode", (req, res, next) => {
 router.get("/profile", ensureAuthenticated, (req, res) => {
   User.findOne({ username: req.user.username })
     .then(username => {
-      console.log(username);
       res.render("auth/my-profile", { username });
     })
     .catch(err => {
@@ -194,7 +192,6 @@ router.get("/add-cafe", (req, res, next) => {
 
 router.post('/add-cafe', ensureAuthenticated, checkIsActive, uploadCloud.single('photo'), (req, res, next) => {
 
-  console.log(req.body.address)
   if ((req.body.name === "")|| (req.body.latitude === "") || (req.body.longitude === ""))  {
     res.render("auth/add-cafe", { 
       error: "Fill out all forms" 
@@ -212,7 +209,6 @@ router.post('/add-cafe', ensureAuthenticated, checkIsActive, uploadCloud.single(
   if (req.body.powerSocket === undefined) req.body.powerSocket = false;
   else req.body.powerSocket = true
   
-  console.log('Eins:', req.body.address)
 
   let newCafe = {
     name: req.body.name, 
@@ -231,7 +227,6 @@ router.post('/add-cafe', ensureAuthenticated, checkIsActive, uploadCloud.single(
 
     Cafe.create(newCafe)
       .then(cafe => {
-        console.log(cafe)
         res.redirect('/cafe/'+cafe._id);
       })
       .catch(err => {

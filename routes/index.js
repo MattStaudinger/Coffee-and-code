@@ -35,7 +35,6 @@ router.post("/send-email", (req, res, next) => {
 });
 
 router.get("/main", (req, res, next) => {
-  console.log(req.user);
   let mapboxAPIKey = process.env.MAPBOXTOKEN;
   Cafe.find().then(coffee => {
     let coffeeLocation = coffee.map(coffee => {
@@ -48,7 +47,6 @@ router.get("/main", (req, res, next) => {
       return coffee._id;
     });
     
-    console.log(coffeeLocation);
     res.render("main", { mapboxAPIKey, coffeeLocation, coffeeName, coffeeId });
   });
 });
@@ -90,7 +88,6 @@ router.get(
 
 router.post("/cafe/:id", (req, res, next) => {
   let id = req.params.id;
-  console.log("Test", req.body.comment);
   let comment = req.body.comment;
   Cafe.findByIdAndUpdate(id, {
     $push: {
@@ -113,7 +110,6 @@ router.get("/cafe/:id/edit-cafe", ensureAuthenticated, (req, res, next) => {
   Cafe.findById(id).then(cafe => {
     let coffeeLocationLat = cafe.location.coordinates[0]
     let coffeeLocationLng = cafe.location.coordinates[1]
-    console.log("Loc", coffeeLocationLat)
     res.render("auth/edit-cafe", { cafe, mapboxAPIKey, coffeeLocationLat, coffeeLocationLng });
   });
 });
@@ -129,17 +125,6 @@ router.post(
     let address = req.body.address;
     let file;
 
-    
-    // Cafe.findById(id).then(cafe => {
-    //   if (!req.file && !cafe.imgPath)
-    //   console.log("Test 1")
-    //   res.render("auth/edit-cafe", {
-    //     error: "Fill out all forms",
-    //     mapboxAPIKey,
-    //     cafe
-    //   })
-    //   return;
-    // })
     if (!req.file) {file = req.user.imgPath} else {file = req.file.url}
 
 
@@ -149,7 +134,6 @@ router.post(
       req.body.longitude === ""
     ) {
       Cafe.findById(id).then(cafe => {
-      console.log(req.body.latitude)
 
         res.render("auth/edit-cafe", {
           error: "Fill out all forms",
@@ -162,7 +146,6 @@ router.post(
         type: "Point",
         coordinates: [req.body.latitude, req.body.longitude]
       };
-      console.log(address)
 
       if (req.body.wifi === undefined) req.body.wifi = false;
       else req.body.wifi = true;
@@ -179,7 +162,6 @@ router.post(
         name: req.body.name
       })
       .then(cafe => {
-      console.log("Test 5")
 
         res.redirect("/cafe/" + id);
       });

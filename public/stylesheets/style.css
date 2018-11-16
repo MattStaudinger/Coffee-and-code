@@ -359,4 +359,27 @@ input:checked + .slider:before {
   border-radius: 10px;
   padding: 15px; }
 
+.inputfile {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1; }
+
+.inputfile + label {
+  font-size: 1em;
+  font-weight: 700;
+  color: white;
+  background-color: #414143;
+  display: inline-block;
+  padding: 6px;
+  cursor: pointer;
+  /* "hand" cursor */
+  border-radius: 5px; }
+
+.inputfile:focus + label,
+.inputfile + label:hover {
+  background-color: #979797; }
+
 /*# sourceMappingURL=style.css.map */

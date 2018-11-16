@@ -57,8 +57,9 @@
 {{#if cafe.imgPath}}
 <img class="img-editCafe mt-2 mb-2" src="{{cafe.imgPath}}">
 {{/if}}
-  <label>Upload a picture</label>
-  <input type="file" name="photo">
+  <input type="file" name="photo" id="photo_upload" class="inputfile">
+  <label for="photo_upload">Upload a picture</label>
+
 <br>
 
 
@@ -83,7 +84,6 @@
     style: 'mapbox://styles/mapbox/streets-v9',
   });
 
-  console.log(address)
   map.addControl(new mapboxgl.NavigationControl())
   
   var geocoder = new MapboxGeocoder({
@@ -110,11 +110,9 @@ lat = map.boxZoom._map.transform._center.lat
 lng = map.boxZoom._map.transform._center.lng
 document.getElementById("lat").value = lat
 document.getElementById("lng").value = lng
-console.log(`https://api.mapbox.com/geocoding/v5/mapbox.places/${lng},${lat}.json?access_token=pk.eyJ1IjoibWF0dGhpYXNmcml0eiIsImEiOiJjam9mbGo1OXgwNTh6M2txemw4aWNjMTgwIn0.cgF_suP2Mh9JtoKF20kjyQ`)
 axios.get(`https://api.mapbox.com/geocoding/v5/mapbox.places/${lng},${lat}.json?access_token=pk.eyJ1IjoibWF0dGhpYXNmcml0eiIsImEiOiJjam9mbGo1OXgwNTh6M2txemw4aWNjMTgwIn0.cgF_suP2Mh9JtoKF20kjyQ`)
 .then (res => {
   document.getElementById("address").value = res.data.features[0].place_name
-  console.log(document.getElementById("address").value)
 })
 
 map.on("moveend", ()=> {
@@ -122,11 +120,9 @@ lat = map.boxZoom._map.transform._center.lat
 lng = map.boxZoom._map.transform._center.lng
 document.getElementById("lat").value = lat
 document.getElementById("lng").value = lng
-console.log(`https://api.mapbox.com/geocoding/v5/mapbox.places/${lng},${lat}.json?access_token=pk.eyJ1IjoibWF0dGhpYXNmcml0eiIsImEiOiJjam9mbGo1OXgwNTh6M2txemw4aWNjMTgwIn0.cgF_suP2Mh9JtoKF20kjyQ`)
 axios.get(`https://api.mapbox.com/geocoding/v5/mapbox.places/${lng},${lat}.json?access_token=pk.eyJ1IjoibWF0dGhpYXNmcml0eiIsImEiOiJjam9mbGo1OXgwNTh6M2txemw4aWNjMTgwIn0.cgF_suP2Mh9JtoKF20kjyQ`)
 .then (res => {
   document.getElementById("address").value = res.data.features[0].place_name
-  console.log(document.getElementById("address").value)
 
 })
 })
