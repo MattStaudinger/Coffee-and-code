@@ -95,7 +95,7 @@ router.post("/signup", uploadCloud.single('photo'), (req, res, next) => {
         from: '"Ute from Coffee and Code" <coffeeandcode@gmail.com>',
         to: email, //the email entered in the form
         subject: 'Please validate your account', 
-        html: `Hi ${username}, please validate your account by clicking <a href="http://localhost:3800/auth/confirm/${confirmationCode}">here</a>. 
+        html: `Hi ${username}, please validate your account by clicking <a href="https://coffee-and-code.herokuapp.com/auth/confirm/${confirmationCode}">here</a>. 
         If the link doesn't work, please go here: https://coffee-and-code.herokuapp.com/auth/confirm/.`
       })
       .then(info => console.log(info))
