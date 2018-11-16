@@ -1,5 +1,4 @@
-
-
+<div class="bg-container">
 <div class="container center add-cafe-container">
 
 <h2 class="d-block">Edit café</h2>
@@ -11,59 +10,73 @@
 </div>
 {{/if}}
 
+<div class="center">
 <form action="/cafe/{{cafe._id}}/edit" method="POST" enctype="multipart/form-data">
-  <label class="d-block">Name:</label>
+  
+  <div class="input">
+    <label class="d-block">Name:</label>
     <input type="text" name="name" value="{{cafe.name}}"> <br>
-
+  </div>
   
-
-<label>Opening hours:</label>
-  <input type="time" name="start" min="0:00" max="24:00" value="{{cafe.openingHours.[0]}}" required>
-  until
-  <input type="time" name="end"
-       min="0:00" max="24:00" value="{{cafe.openingHours.[1]}}" required>
+  <div class="input"> 
+    <label>Opening hours:</label>
+    <input type="time" name="start" min="0:00" max="24:00" value="{{cafe.openingHours.[0]}}" required>
+      until
+    <input type="time" name="end" min="0:00" max="24:00" value="{{cafe.openingHours.[1]}}" required>
+  </div>
  
- 
-  <label class="d-block">Wifi</label>
-  <label class="switch">
-  <input class="toggle-switch" type="checkbox" name="wifi" value="1" 
-  {{#if cafe.Wifi}}checked="true"{{/if}}>
-  <span class="slider round"></span>
- </label>
+ <div class="input"> 
+   <label class="d-block">Wifi</label>
+   <label class="switch">
+   <input class="toggle-switch" type="checkbox" name="wifi" value="1" 
+   {{#if cafe.Wifi}}checked="true"{{/if}}>
+   <span class="slider round"></span>
+   </label>
+  </div>
 
-  
-
+<div class="input"> 
  <label class="d-block">Power outlet</label>
   <label class="switch">
   <input class="toggle-switch" type="checkbox" name="powerSocket" value="1" {{#if cafe.powerSockets}}checked="true"{{/if}}>
   <span class="slider round"></span>
  </label>
-
-
-  <label class="d-block">Location:</label>
-  <div class="input-group mb-3">
-  <div id='geocoderEditCafe' class='geocoder'>  </div>
 </div>
 
-<div id='mapEditCafe'></div>
-<div class="hidden">
+<div class="input"> 
+  <label class="d-block">Location:</label>
+  <div class="input-group mb-3">
+    <div id='geocoderEditCafe' class='geocoder'>  </div>
+  </div>
+</div>
+
+<div class="input"> 
+  <div id='mapEditCafe'>
+  <div class="hidden">
     <input type="text" name="latitude" id="lat" placeholder="latitude" >
     <input type="text" name="longitude" id="lng" placeholder="longitude">
     <input type="text" name="address" id="address" placeholder="address">
-    </div>
+  </div>
+  </div>
+</div>
 
-
-
+<div class="input"> 
 {{#if cafe.imgPath}}
 <img class="img-editCafe mt-2 mb-2" src="{{cafe.imgPath}}">
 {{/if}}
+</div>
+
+<div class="input"> 
   <label>Upload a picture</label>
   <input type="file" name="photo">
 <br>
+</div>
 
+<div class="input"> 
+  <button id="btn-submit" type="submit" class="profile-btns btn mb-4">Update café</button>
+</div>
 
- <button id="btn-submit" type="submit" class="profile-btns btn mb-4">Update café</button>
 </form>
+</div>
 </div>
 
 
@@ -138,3 +151,4 @@ document.getElementById('geocoderEditCafe').appendChild(geocoder.onAdd(map));
 
 
 </script>
+</div>

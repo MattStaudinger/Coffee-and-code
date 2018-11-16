@@ -17,10 +17,11 @@ $darkishGrey: #414143;
 // }
 
 body {
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-family: 'Montserrat', sans-serif;
+  ;
 }
-.main {
-  margin-top: 70px;
+.main{
+  margin-top: 10vh;
 }
 .bg-coffee{
   background-color: #E1DCD9;
@@ -90,12 +91,17 @@ body {
   display: flex;
   justify-content: center;
 }
+.bg-container{
+  color: white;
+  background-color: rgba(162,126,118,0.5);
+  width: 100%;
+}
 
 .add-cafe-container {
   color: white;
-  max-width: 600px;
-  background-color: rgba(162,126,118,0.5);
-  box-sizing: border-box;
+  //max-width: 600px;
+  background-color: rgba(0,0,0,0.1);
+  //box-sizing: border-box;
 }
 
 .cafe-page {
@@ -103,9 +109,9 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  max-width: 600px;
-  background-color: $burnishedBrown;
-  padding-top: 10vh;
+  //max-width: 600px;
+  background-color: rgba(0,0,0,0.1);
+  //padding-top: 10vh;
    
 }
 
@@ -124,7 +130,7 @@ body {
 font-weight: 900;
 }
 .comment {
-  background-color: rgb(216, 150, 88);
+  background-color:  rgba(141, 135, 126, 0.308);
   width: 100%;
   margin: 10px 0;
   border-radius: 10px;
@@ -142,12 +148,12 @@ font-weight: 900;
 
 .img-cafe {
   display: block;
-  width: 50%;
+  width: 60%;
   height: auto;
 }
 
 #mapCafe {
-  width: 84%;
+  width: 80%;
   margin: 0 8%;
   height: 50vh;
   border-radius: 10px;
@@ -170,6 +176,7 @@ font-weight: 900;
 }
 .about-container {
   background-color: rgba(162,126,118,0.5);
+  color: white;
 }
 
 .profile-container {
@@ -177,12 +184,15 @@ font-weight: 900;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  // align-items: center;
+  // align-content: center;
   max-width: 600px;
-  width: 100vw;
-  background-color: rgba(162,126,118,0.5);
+  //width: 100%;
   height: 100vh;
+  background-color: rgba(0,0,0,0.1);
+  
   //xbackground: url(../images/landingpage-img.jpeg) no-repeat center center;
-  background-size: cover;
+  //background-size: cover;
   //background-color: #ccc;
   //background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.2) 25%, rgba(0, 0, 0, 0) 25%, rgba(0, 0, 0, 0) 50%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.2) 75%, rgba(0, 0, 0, 0) 75%, rgba(0, 0, 0, 0));
 }
@@ -269,7 +279,7 @@ font-weight: 900;
   border-radius: 10px;
 }
 #mapEditCafe {
-  width: 40vw;
+  width: 80vw;
   height: 35vh;
   border-radius: 10px;
 }
@@ -386,7 +396,7 @@ font-weight: 900;
   flex-wrap: wrap;
   flex-direction: column;
   align-items: center;
-  max-width: 400px;
+  //max-width: 400px;
   //padding-top: 10vh;
   height: 100vh;
 }
@@ -449,11 +459,11 @@ display: block;
 }
 
 input:checked + .slider {
-  background-color:$burnedRed;
+  background-color:$lightBrown;
 }
 
 input:focus + .slider {
-  box-shadow: 0 0 1px $burnedRed;
+  box-shadow: 0 0 1px $lightBrown;
 }
 
 input:checked + .slider:before {
