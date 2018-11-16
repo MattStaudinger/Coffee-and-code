@@ -33,25 +33,17 @@
       <img src="{{user.imgPath}}" alt="Picture of user" class="profile-picture"><br>
     </div>
     <div class="upload">
-      <label>Upload a picture</label>
-      <input type="file" name="photo" class="profile-btns">
+    <input type="file" name="photo" id="photo_upload" class="inputfile">
+  <label class="profile-btns p-2 btn" for="photo_upload">Upload a picture</label>
     </div>  
       {{/if}}
   </div>
-
-
-
-  <button class="d-block profile-btns btn mt-4" type="submit">Update profile</button>
+  <button class="d-block profile-btns btn mt-4 mb-2" type="submit">Save</button>
+   <a href="/auth/profile/"+{{user._id}} class="profile-btns btn">Cancel<a/>
 </div>
 
 </form>
 
-
-
-
-<div class="btn-div mb-2 mt-4">
-  <a href="/auth/profile/"+{{user._id}} class="profile-btns btn">Back<a/>
-</div>
 
 </div>
 </div>  

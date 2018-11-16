@@ -95,7 +95,7 @@ router.post("/signup", uploadCloud.single('photo'), (req, res, next) => {
         from: '"Ute from Coffee and Code" <coffeeandcode@gmail.com>',
         to: email, //the email entered in the form
         subject: 'Please validate your account', 
-        html: `Hi ${username}, please validate your account by clicking <a href="https://coffee-and-code.herokuapp.com/auth/confirm/${confirmationCode}">here</a>. 
+        html: `Hi ${username}, please validate your account by clicking <a href="http://localhost:3800/auth/confirm/${confirmationCode}">here</a>. 
         If the link doesn't work, please go here: https://coffee-and-code.herokuapp.com/auth/confirm/.`
       })
       .then(info => console.log(info))
@@ -123,7 +123,7 @@ router.get("/confirm/:confirmCode", (req, res, next) => {
       if (user) {
         // req.login makes the user login automatically
         req.login(user, () => {
-          res.redirect("/auth/profile");
+          res.redirect("/auth/profile-question");
         });
       } else {
         next("No user found");
@@ -131,6 +131,23 @@ router.get("/confirm/:confirmCode", (req, res, next) => {
     }
   );
 });
+
+router.get("/profile-question", ensureAuthenticated, (req, res) => {
+res.render("profile-question")
+})
+
+router.post("/profile-question", ensureAuthenticated, (req, res) => {
+  User.findByIdAndUpdate(req.user._id, {
+    favoriteDrink: req.body.drink
+  })
+  .then (user => {
+    res.redirect("/auth/profile")
+  })
+})
+
+
+
+
 
 router.get("/profile", ensureAuthenticated, (req, res) => {
   User.findOne({ username: req.user.username })

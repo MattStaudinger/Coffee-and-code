@@ -88,9 +88,17 @@ body {
 }
 
 .account-message {
+  margin-top: 4vw;
   display: flex;
   justify-content: center;
+  text-align: center;
+  align-items: center;
+  flex-direction: column;
 }
+.account-message p {
+  width: 70%
+}
+
 .bg-container{
   color: white;
   background-color: rgba(162,126,118,0.5);
@@ -214,11 +222,13 @@ font-weight: 900;
 }
 
 .profile-btns {
+  text-align: center;
   width: 200px;
   background-color: rgba(141, 135, 126, 0.308);;
   color: white;
   border-radius: 25px;
   box-shadow: 1px 1px 1px  rgba(0, 0, 0, 0.459);
+  cursor: pointer; /* "hand" cursor */
 }
 
 .input{
@@ -360,11 +370,12 @@ font-weight: 900;
   font-size: 1.2em;
   font-weight: 900;
   text-align: center;
+  color:black;
 }
 
 #marker-list a {
   text-decoration: none;
-  font-weight: 500;
+  font-weight: 400;
   font-size: 1em;
   text-align: left;
 }
@@ -502,18 +513,43 @@ input:checked + .slider:before {
 	z-index: -1;
 }
 
-.inputfile + label{
-  font-size: 1em;
-  font-weight: 700;
-  color: white;
-  background-color: $darkishGrey;
-  display: inline-block;
-  padding: 6px;
-  cursor: pointer; /* "hand" cursor */
-  border-radius: 5px;
+
+
+.profile-question-page {
+  height: 90vh;
+  flex-direction: column;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: rgba(0,0,0,0.1);
+
+  
 }
 
-.inputfile:focus + label,
-.inputfile + label:hover {
-  background-color: rgb(151, 151, 151) ;
+.profile-question-page input {
+  background: transparent;
+	border: none;
+	border-bottom: 1px dashed #83A4C5;
+	outline: none;
+	padding: 0px 0px 0px 0px;
+  width: 30vw;
+  margin-top: 10px;
+  background-color: rgba(141, 135, 126, 0.308);;
+  border-radius: 40px;
+  box-shadow: 2px 2px 2px  rgba(0, 0, 0, 0.459);
+  padding: 15px;
+  font-size: 2em;
+  font-weight: 900;
+  text-align: center;
+  
+
+
+  
 }
+
+// .profile-question-page .round {
+//   border-radius: 40px;
+//   background-color: yellow;
+//   padding: 20px;
+// }
