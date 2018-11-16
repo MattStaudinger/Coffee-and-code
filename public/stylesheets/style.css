@@ -493,7 +493,7 @@ input:checked + .slider:before {
   text-align: center; }
 
 .form-control {
-  width: 20%; }
+  width: 150px; }
 
 .date-control {
   width: 100px; }
