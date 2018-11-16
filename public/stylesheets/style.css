@@ -352,7 +352,8 @@ body {
   font-size: 1.2em;
   font-weight: 900;
   text-align: center;
-  color: black; }
+  color: black;
+  padding: 3px 3px 0 3px; }
 
 #marker-list a {
   text-decoration: none;
@@ -493,9 +494,18 @@ input:checked + .slider:before {
   text-align: center; }
 
 .form-control {
-  width: 20%; }
+  width: 200px;
+  opacity: 0.9; }
 
 .date-control {
   width: 100px; }
+
+#email {
+  font-size: 0.7em; }
+
+.alert {
+  background-color: #A27E76;
+  width: 100%;
+  color: white; }
 
 /*# sourceMappingURL=style.css.map */

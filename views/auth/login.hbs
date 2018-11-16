@@ -6,17 +6,18 @@
 <h2>Login</h2>
 
 <form action="/auth/login" method="POST" id="form-container">
+  <div class="form-group">
 
 <div class="input">
   <label for="username">Username</label>
-  <input id="username" type="text" name="username" placeholder="Coffee Lover">
+  <input class="form-control" id="username" type="text" name="username" placeholder="Coffee Lover">
 </div>
 
   <br><br>
 
 <div class="input">
   <label for="password">Password</label>
-  <input id="password" type="password" name="password" placeholder="Your password">
+  <input class="form-control" id="password" type="password" name="password" placeholder="Your password">
   <br>
 </div>
 
@@ -33,6 +34,7 @@
   <div class="account-message">
     <p>Don't have an account yet?</p>
     <a href="/auth/signup">Signup</a>
+  </div>
   </div>
 </form>
 </div>
