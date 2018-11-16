@@ -20,9 +20,7 @@ body {
   font-family: 'Montserrat', sans-serif;
   ;
 }
-.main{
-  margin-top: 10vh;
-}
+
 .bg-coffee{
   background-color: #E1DCD9;
 }
@@ -32,7 +30,7 @@ body {
 .landing-page {
   display: flex;
   flex-direction: column; 
-  margin-top: -8vh;
+  //margin-top: -8vh;
   height: 100vh;
   color: #E1DCD9;
   background: url(../images/landingpage-img.jpeg) no-repeat center center fixed;
@@ -111,7 +109,7 @@ body {
   justify-content: center;
   //max-width: 600px;
   background-color: rgba(0,0,0,0.1);
-  //padding-top: 10vh;
+  margin-top: 50px;
    
 }
 
@@ -177,6 +175,7 @@ font-weight: 900;
 .about-container {
   background-color: rgba(162,126,118,0.5);
   color: white;
+  height: 200vh;
 }
 
 .profile-container {
@@ -184,6 +183,7 @@ font-weight: 900;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  margin-top: 50px;
   // align-items: center;
   // align-content: center;
   max-width: 600px;
@@ -225,6 +225,10 @@ font-weight: 900;
     display: flex;
     flex-direction: column;
     align-items: center;
+    
+}
+.details-page{
+  width: 50vw;
 }
 .input-hours{
     display: flex;
@@ -256,6 +260,7 @@ font-weight: 900;
   margin-top: 2vh;
   display: flex;
   flex-direction: column;
+  margin-top: 60px;
 }
 .h3{
   display: flex;
@@ -396,6 +401,7 @@ font-weight: 900;
   flex-wrap: wrap;
   flex-direction: column;
   align-items: center;
+  margin-top: 10px;
   //max-width: 400px;
   //padding-top: 10vh;
   height: 100vh;

@@ -1,9 +1,6 @@
 body {
   font-family: 'Montserrat', sans-serif; }
 
-.main {
-  margin-top: 10vh; }
-
 .bg-coffee {
   background-color: #E1DCD9; }
 
@@ -13,7 +10,6 @@ body {
 .landing-page {
   display: flex;
   flex-direction: column;
-  margin-top: -8vh;
   height: 100vh;
   color: #E1DCD9;
   background: url(../images/landingpage-img.jpeg) no-repeat center center fixed;
@@ -81,7 +77,8 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background-color: rgba(0, 0, 0, 0.1); }
+  background-color: rgba(0, 0, 0, 0.1);
+  margin-top: 50px; }
 
 .cafe-page ul {
   width: 84%;
@@ -138,13 +135,15 @@ body {
 
 .about-container {
   background-color: rgba(162, 126, 118, 0.5);
-  color: white; }
+  color: white;
+  height: 200vh; }
 
 .profile-container {
   color: white;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  margin-top: 50px;
   max-width: 600px;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.1); }
@@ -177,6 +176,9 @@ body {
   flex-direction: column;
   align-items: center; }
 
+.details-page {
+  width: 50vw; }
+
 .input-hours {
   display: flex;
   align-items: center;
@@ -202,7 +204,8 @@ body {
 .about-text {
   margin-top: 2vh;
   display: flex;
-  flex-direction: column; }
+  flex-direction: column;
+  margin-top: 60px; }
 
 .h3 {
   display: flex;
@@ -332,6 +335,7 @@ body {
   flex-wrap: wrap;
   flex-direction: column;
   align-items: center;
+  margin-top: 10px;
   height: 100vh; }
 
 .main-page h3 {
