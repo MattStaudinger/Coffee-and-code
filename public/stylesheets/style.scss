@@ -151,7 +151,7 @@ body {
   justify-content: center;
   //max-width: 600px;
   background-color: rgba(0,0,0,0.1);
-  margin-top: 50px;
+  margin-top: 60px;
    
 }
 
@@ -231,7 +231,7 @@ font-weight: 900;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin-top: 50px;
+  margin-top: 60px;
   // align-items: center;
   // align-content: center;
   max-width: 600px;
@@ -261,12 +261,10 @@ font-weight: 900;
   border-radius: 100px;
 }
 
-.input{
+.input{ 
     display: flex;
     flex-direction: column;
-    align-items: center;
     align-content: center;
-    
 }
 .details-page{
   width: 50vw;
