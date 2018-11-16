@@ -565,7 +565,7 @@ input:checked + .slider:before {
   
 }
 
-.profile-question-page input {
+.input-form-drink {
   background: transparent;
 	border: none;
 	border-bottom: 1px dashed #83A4C5;
@@ -583,9 +583,14 @@ input:checked + .slider:before {
 }
 
 
+.form-control {
+  width: 20%;
+}
 
-// .profile-question-page .round {
-//   border-radius: 40px;
-//   background-color: yellow;
-//   padding: 20px;
-// }
+.date-control {
+  width: 100px;
+}
+
+
+
+

@@ -476,7 +476,7 @@ input:checked + .slider:before {
   text-align: center;
   background-color: rgba(0, 0, 0, 0.1); }
 
-.profile-question-page input {
+.input-form-drink {
   background: transparent;
   border: none;
   border-bottom: 1px dashed #83A4C5;
@@ -491,5 +491,11 @@ input:checked + .slider:before {
   font-size: 2em;
   font-weight: 900;
   text-align: center; }
+
+.form-control {
+  width: 20%; }
+
+.date-control {
+  width: 100px; }
 
 /*# sourceMappingURL=style.css.map */

@@ -10,18 +10,17 @@
 {{/if}}
 
 <form class="" action="/auth/add-cafe" method="POST" enctype="multipart/form-data">
-
+  <div class="form-group">
 <div class="input">
   <label class="d-block">Name:</label>
-    <input type="text" name="name"> <br>
+    <input class="form-control" placeholder="name" type="text" name="name"> <br>
 </div>
-  <br><br>
 
 <div class="input">
 <label>Opening hours:</label>
-  <input type="time" name="start" min="0:00" max="24:00" required>
+  <input class="form-control date-control" type="time" name="start" min="0:00" max="24:00" required>
   until
-  <input type="time" name="end" min="0:00" max="24:00" required>
+  <input class="form-control date-control" type="time" name="end" min="0:00" max="24:00" required>
  </div>     
  
  <div class="input">
@@ -57,10 +56,11 @@
 
 <div class="input">
   <input type="file" name="photo" id="photo_upload" class="inputfile">
-  <label class="profile-btns p-2" for="photo_upload">Upload a picture</label>
+  <label class="profile-btns btn p-2" for="photo_upload">Upload a picture</label>
   <br><br>
  <button type="submit" class="profile-btns btn mb-4">Add café</button>
  </div>
+  </div>
 </form>
 </div>
 
