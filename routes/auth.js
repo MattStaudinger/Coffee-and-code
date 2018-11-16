@@ -92,7 +92,7 @@ router.post("/signup", uploadCloud.single('photo'), (req, res, next) => {
       });  
       
       transporter.sendMail({
-        from: '"Coffee and Code" <coffeeandcode@gmail.com>',
+        from: '"Ute from Coffee and Code" <coffeeandcode@gmail.com>',
         to: email, //the email entered in the form
         subject: 'Please validate your account', 
         html: `Hi ${username}, please validate your account by clicking <a href="https://coffee-and-code.herokuapp.com/auth/confirm/${confirmationCode}">here</a>. 

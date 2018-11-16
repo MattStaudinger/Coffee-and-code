@@ -1,34 +1,49 @@
+<div class="bg-container">
+<div class="form-container">
+<div class="profile-container">
+
 <h2>Signup</h2>
 
+
 <form action="/auth/signup" method="POST" id="form-container" enctype="multipart/form-data">
+
+<div class="input">
   <label for="username">Username</label>
   <input id="username" type="text" name="username" placeholder="Coffee Lover">
+</div>
+<br>
 
-  <br><br>
-
+<div class="input">
   <label for="password">Password</label>
   <input id="password" type="password" name="password" placeholder="Your password">
-  <br>
+</div>
+<br>
   {{#if message }}
-    <div class="error-message">{{ message }}</div>
+    <div class="alert alert-danger">{{ message }}</div>
   {{/if}}
 
-  <br><br>
-
+<div class="input">
   <label for="email">Email</label>
   <input id="email" type="text" name="email" placeholder="Ineed@Coffee.com">
+</div>
+<br>
 
-  <br><br>
-
+<div class="input">
   <label>Profile picture</label>
-  <input type="file" name="photo">
-  
-  <br><br>
+  <input type="file" name="photo" class="profile-btns">
+</div>
+<br>
 
-  <button>Create account</button>
+<div class="btn-div">
+  <button class="btn-primary profile-btns">Create account</button>
+</div>
 
   <p class="account-message">
     Do you already have an account?
+    <br>
     <a href="/auth/login">Login</a>
   </p>
 </form>
+</div>
+</div>
+</div>

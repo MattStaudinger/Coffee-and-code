@@ -1,15 +1,11 @@
+<div class="bg-container">
 <div class="container cafe-page">
 
   <div class="center">
-<h2>{{cafe.name}}</h2>
+  <h2><strong>{{cafe.name}}</strong></h2>
 
-{{#if cafe.imgPath}}
-<img class="img-cafe mt-2 mb-2" src="{{cafe.imgPath}}">
-{{/if}}
-
-</div>
-
-<ul>
+  <div class="input">
+  <ul>
   <li><span class="bold">Address:</span> {{{cafe.address}}}</li>
   <li><span class="bold">Wifi: </span> {{#if cafe.Wifi}}
     <i class="fas fa-check"></i> 
@@ -23,6 +19,14 @@
     {{/if}}</li>
   <li><span class="bold">Opening hours: </span> {{cafe.openingHours.[0]}} - {{cafe.openingHours.[1]}}</li>
 </ul>
+</div>
+
+{{#if cafe.imgPath}}
+<img class="img-cafe mt-2 mb-2" src="{{cafe.imgPath}}">
+{{/if}}
+
+</div>
+
 
 <div class="mt-4" id='mapCafe'></div>
 
@@ -51,6 +55,7 @@
 
 <script>
 
+
 let cafeName = "{{{cafe.name}}}"
 let coordinates = [{{{ coffeeLocation }}}]
   mapboxgl.accessToken = "{{mapboxAPIKey}}";
@@ -60,6 +65,7 @@ let coordinates = [{{{ coffeeLocation }}}]
     zoom: 15, // starting zoom
     style: 'mapbox://styles/mapbox/streets-v9',
   });
+
 
 
 
@@ -78,3 +84,5 @@ let coordinates = [{{{ coffeeLocation }}}]
 
 
 </script>
+
+</div>

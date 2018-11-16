@@ -1,6 +1,7 @@
 // Color scheme:
 $lightGrey: #E1DCD9;
 $lightBrown: rgba(141, 135, 126, 0.308);
+$transparentBlack: (0,0,0,0.3);
 $burnishedBrown: #A27E76;
 $burnedRed: #66290b;
 $darkishGrey: #414143;
@@ -16,10 +17,11 @@ $darkishGrey: #414143;
 // }
 
 body {
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-family: 'Montserrat', sans-serif;
+  ;
 }
-.main {
-  margin-top: 8vh;
+.main{
+  margin-top: 10vh;
 }
 .bg-coffee{
   background-color: #E1DCD9;
@@ -32,16 +34,17 @@ body {
   flex-direction: column; 
   margin-top: -8vh;
   height: 100vh;
-  background-image: url(../images/landingpage-img.jpeg);
-  background-repeat: no-repeat;
-  background-size: cover;
   color: #E1DCD9;
+  background: url(../images/landingpage-img.jpeg) no-repeat center center fixed;
+  background-size: cover;
+  //height: 100%;
+  overflow: hidden;
 }
 .landing-page h1 {
   display: flex;
   justify-content: center;
   margin-top: 30vh;
-  font-size: 3em;
+  font-size: 3.2em;
   color: white;
   font-family: helvetica;
   text-align: center;
@@ -53,6 +56,7 @@ body {
 .btn-div{
   display: flex;
   justify-content: center;
+  margin-bottom: 2vh;
 }
 
 .btn-primary {
@@ -87,15 +91,17 @@ body {
   display: flex;
   justify-content: center;
 }
+.bg-container{
+  color: white;
+  background-color: rgba(162,126,118,0.5);
+  width: 100%;
+}
 
 .add-cafe-container {
   color: white;
-  max-width: 600px;
-  background-color: $burnishedBrown;
-  padding-top: 10vh;
-  border-radius: 20px;
-  box-sizing: border-box;
-  box-shadow: 3px 3px 3px  rgba(0, 0, 0, 0.459);
+  //max-width: 600px;
+  background-color: rgba(0,0,0,0.1);
+  //box-sizing: border-box;
 }
 
 .cafe-page {
@@ -103,9 +109,9 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  max-width: 600px;
-  background-color: $burnishedBrown;
-  padding-top: 10vh;
+  //max-width: 600px;
+  background-color: rgba(0,0,0,0.1);
+  //padding-top: 10vh;
    
 }
 
@@ -123,12 +129,8 @@ body {
 .bold {
 font-weight: 900;
 }
-
-.comment-container {
-
-}
 .comment {
-  background-color: rgb(216, 150, 88);
+  background-color:  rgba(141, 135, 126, 0.308);
   width: 100%;
   margin: 10px 0;
   border-radius: 10px;
@@ -146,41 +148,65 @@ font-weight: 900;
 
 .img-cafe {
   display: block;
-  width: 50%;
+  width: 60%;
   height: auto;
 }
 
 #mapCafe {
-  width: 84%;
+  width: 80%;
   margin: 0 8%;
   height: 50vh;
   border-radius: 10px;
   margin-bottom: 30px;
 }
+.upload {
+  margin-top: 2vh;
+}
 
+.form-container{
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+  //max-width: 600px;
+}
+.map-container {
+  color: white;
+  background-color: rgba(162,126,118,0.5);
+}
+.about-container {
+  background-color: rgba(162,126,118,0.5);
+  color: white;
+}
 
 .profile-container {
   color: white;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  // align-items: center;
+  // align-content: center;
   max-width: 600px;
-  background-color: $burnishedBrown;
-  padding-top: 10vh;
+  //width: 100%;
   height: 100vh;
-  // background-image: url(../images/bg02.jpg);
-  // background-repeat: no-repeat;
-  // background-size: cover;
+  background-color: rgba(0,0,0,0.1);
+  
+  //xbackground: url(../images/landingpage-img.jpeg) no-repeat center center;
+  //background-size: cover;
+  //background-color: #ccc;
+  //background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.2) 25%, rgba(0, 0, 0, 0) 25%, rgba(0, 0, 0, 0) 50%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.2) 75%, rgba(0, 0, 0, 0) 75%, rgba(0, 0, 0, 0));
 }
 .profile-container h2{
   display: flex;
   justify-content: center;
+  color: white;
 }
 .pic-div {
   display: flex;
   justify-content: center;
 }
 .profile-picture{
+  margin-top: 2vh;
   object-fit: cover;
   height: 200px;
   width: 200px;
@@ -189,10 +215,27 @@ font-weight: 900;
 
 .profile-btns {
   width: 200px;
-  background-color: white;
-  color: $burnishedBrown;
+  background-color: rgba(141, 135, 126, 0.308);;
+  color: white;
   border-radius: 25px;
   box-shadow: 1px 1px 1px  rgba(0, 0, 0, 0.459);
+}
+
+.input{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.input-hours{
+    display: flex;
+    //flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.d-block{
+  margin-top: 2vh;
+  display: flex;
+  justify-content: center;
 }
 
 .center-2-btns {
@@ -204,31 +247,39 @@ font-weight: 900;
 }
 
 
-.about {
+.about-forms {
   display: flex;
   flex-direction: column;
+  width: 80vw;
 }
 .about-text{
   margin-top: 2vh;
   display: flex;
   flex-direction: column;
 }
-.about-text h5 {
+.h3{
+  display: flex;
+  justify-content: center;
+  margin-top: 2vh;
+}
+.about-text h5{
   display: flex;
   justify-content: center;
 }
 .about-text p {
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
+  width: 80vw;
 }
 
 #mapAddCafe {
-  width: 40vw;
+  width: 80vw;
   height: 35vh;
   border-radius: 10px;
 }
 #mapEditCafe {
-  width: 40vw;
+  width: 80vw;
   height: 35vh;
   border-radius: 10px;
 }
@@ -265,14 +316,24 @@ font-weight: 900;
   display: flex;
   flex-direction: column;
 }
+.about h3{
+  margin-top: 3vh;  
+}
 .about-text {
   display: flex;
   justify-content: center;
   align-items: center;
   align-content: center;
 }
+.about-ute{
+  font-size: 0.8em;
+  opacity: 0.5;
+  margin-top: 1vh;
+}
 .img-about {
- width: 40vw;
+ margin-top: 4vh;
+ width: 60vw;
+ border-radius: 10px;
 }
 .favorite-picture{
   display: flex;
@@ -326,6 +387,7 @@ font-weight: 900;
   justify-content: center;
   flex-direction: column;
   align-items: center;
+  margin-top: 2vh;
 }
 
 .main-page {
@@ -334,8 +396,8 @@ font-weight: 900;
   flex-wrap: wrap;
   flex-direction: column;
   align-items: center;
-  max-width: 400px;
-  padding-top: 10vh;
+  //max-width: 400px;
+  //padding-top: 10vh;
   height: 100vh;
 }
 
@@ -397,11 +459,11 @@ display: block;
 }
 
 input:checked + .slider {
-  background-color:$burnedRed;
+  background-color:$lightBrown;
 }
 
 input:focus + .slider {
-  box-shadow: 0 0 1px $burnedRed;
+  box-shadow: 0 0 1px $lightBrown;
 }
 
 input:checked + .slider:before {
